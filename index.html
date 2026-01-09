@@ -223,7 +223,7 @@
       cursor: pointer;
       transition: all 0.3s ease;
     }
-    .weather-widget, .location-badge {
+    .weather-widget {
       background: rgba(255, 215, 0, 0.1);
       border: 2px solid #FFD700;
       padding: 10px 20px;
@@ -353,11 +353,6 @@
       background: rgba(255, 165, 0, 0.1);
       border-color: rgba(255, 165, 0, 0.3);
       color: #FFA500;
-    }
-    .trend-badge.hold {
-      background: rgba(255, 215, 0, 0.1);
-      border-color: rgba(255, 215, 0, 0.3);
-      color: #FFD700;
     }
     .trend-insights {
       display: grid;
@@ -561,6 +556,223 @@
       box-shadow: 0 10px 30px rgba(255, 215, 0, 0.4);
     }
     
+    /* AI Assistant Chatbot */
+    .ai-assistant-btn {
+      position: fixed;
+      bottom: 100px;
+      right: 30px;
+      width: 70px;
+      height: 70px;
+      background: linear-gradient(135deg, #FFD700, #FFA500);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 36px;
+      cursor: pointer;
+      box-shadow: 0 10px 40px rgba(255, 215, 0, 0.5);
+      z-index: 999;
+      transition: all 0.3s ease;
+      animation: bounce 2s infinite;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    .ai-assistant-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 15px 50px rgba(255, 215, 0, 0.7);
+    }
+    .chatbot-window {
+      position: fixed;
+      bottom: 100px;
+      right: 30px;
+      width: 420px;
+      height: 650px;
+      background: rgba(0, 0, 0, 0.95);
+      border: 3px solid #FFD700;
+      border-radius: 25px;
+      display: none;
+      flex-direction: column;
+      z-index: 1000;
+      box-shadow: 0 20px 60px rgba(255, 215, 0, 0.4);
+      backdrop-filter: blur(10px);
+    }
+    .chatbot-window.show {
+      display: flex;
+      animation: slideUp 0.3s ease-out;
+    }
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .chatbot-header {
+      background: linear-gradient(135deg, #FFD700, #FFA500);
+      padding: 20px;
+      border-radius: 22px 22px 0 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .chatbot-header h3 {
+      color: #000;
+      font-size: 20px;
+      font-weight: 900;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .close-chat {
+      background: rgba(0, 0, 0, 0.2);
+      border: none;
+      color: #000;
+      font-size: 24px;
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-weight: 900;
+      transition: all 0.3s ease;
+    }
+    .close-chat:hover {
+      background: rgba(0, 0, 0, 0.4);
+      transform: rotate(90deg);
+    }
+    .chatbot-messages {
+      flex: 1;
+      padding: 20px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    .chatbot-messages::-webkit-scrollbar {
+      width: 8px;
+    }
+    .chatbot-messages::-webkit-scrollbar-track {
+      background: rgba(255, 215, 0, 0.1);
+      border-radius: 10px;
+    }
+    .chatbot-messages::-webkit-scrollbar-thumb {
+      background: #FFD700;
+      border-radius: 10px;
+    }
+    .message {
+      padding: 15px;
+      border-radius: 15px;
+      max-width: 85%;
+      animation: messageIn 0.3s ease-out;
+      line-height: 1.6;
+    }
+    @keyframes messageIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .message.bot {
+      background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 165, 0, 0.1));
+      border: 2px solid rgba(255, 215, 0, 0.3);
+      align-self: flex-start;
+      color: #fff;
+    }
+    .message.user {
+      background: linear-gradient(135deg, rgba(0, 150, 255, 0.2), rgba(0, 100, 200, 0.1));
+      border: 2px solid rgba(0, 150, 255, 0.3);
+      align-self: flex-end;
+      color: #fff;
+    }
+    .quick-actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+    .quick-btn {
+      background: rgba(255, 215, 0, 0.1);
+      border: 2px solid rgba(255, 215, 0, 0.3);
+      color: #FFD700;
+      padding: 8px 15px;
+      border-radius: 20px;
+      font-size: 12px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 600;
+    }
+    .quick-btn:hover {
+      background: rgba(255, 215, 0, 0.2);
+      border-color: #FFD700;
+      transform: scale(1.05);
+    }
+    .chatbot-input {
+      padding: 20px;
+      border-top: 2px solid rgba(255, 215, 0, 0.3);
+      display: flex;
+      gap: 10px;
+    }
+    .chatbot-input input {
+      flex: 1;
+      padding: 15px;
+      border-radius: 25px;
+      border: 2px solid rgba(255, 215, 0, 0.3);
+      background: rgba(255, 215, 0, 0.05);
+      color: #fff;
+      font-size: 14px;
+    }
+    .chatbot-input input:focus {
+      outline: none;
+      border-color: #FFD700;
+      box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+    }
+    .chatbot-input input::placeholder {
+      color: #666;
+    }
+    .send-btn {
+      background: linear-gradient(135deg, #FFD700, #FFA500);
+      border: none;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      font-size: 20px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      color: #000;
+      font-weight: 900;
+    }
+    .send-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 5px 20px rgba(255, 215, 0, 0.5);
+    }
+    .typing-indicator {
+      display: none;
+      align-items: center;
+      gap: 5px;
+      padding: 15px;
+      background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 165, 0, 0.1));
+      border: 2px solid rgba(255, 215, 0, 0.3);
+      border-radius: 15px;
+      max-width: 85%;
+      align-self: flex-start;
+    }
+    .typing-indicator.show {
+      display: flex;
+    }
+    .typing-dot {
+      width: 8px;
+      height: 8px;
+      background: #FFD700;
+      border-radius: 50%;
+      animation: typing 1.4s infinite;
+    }
+    .typing-dot:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+    .typing-dot:nth-child(3) {
+      animation-delay: 0.4s;
+    }
+    @keyframes typing {
+      0%, 60%, 100% { transform: translateY(0); }
+      30% { transform: translateY(-10px); }
+    }
+    
     .bottom-nav { 
       position: fixed; 
       bottom: 0; 
@@ -605,6 +817,8 @@
       .trader-avatar-large { margin: 0 auto; }
       .contact-buttons { flex-direction: column; }
       .contact-btn { min-width: 100%; }
+      .chatbot-window { width: 90%; right: 5%; }
+      .ai-assistant-btn { bottom: 90px; right: 20px; width: 60px; height: 60px; font-size: 30px; }
     }
   </style>
 </head>
@@ -1001,6 +1215,37 @@
     </div>
   </main>
 
+  <!-- AI Assistant Button -->
+  <div class="ai-assistant-btn" onclick="toggleChatbot()">🤖</div>
+
+  <!-- Chatbot Window -->
+  <div class="chatbot-window" id="chatbot">
+    <div class="chatbot-header">
+      <h3>🤖 RTCP AI Assistant</h3>
+      <button class="close-chat" onclick="toggleChatbot()">×</button>
+    </div>
+    <div class="chatbot-messages" id="chat-messages">
+      <div class="message bot">
+        <p>👋 Namaste! I'm your AI farming assistant. I can help you with:</p>
+        <div class="quick-actions">
+          <button class="quick-btn" onclick="askBot('wheat price')">🌾 Wheat Prices</button>
+          <button class="quick-btn" onclick="askBot('best time to sell')">📈 Best Selling Time</button>
+          <button class="quick-btn" onclick="askBot('subsidies')">🏛️ Subsidies</button>
+          <button class="quick-btn" onclick="askBot('traders')">🤝 Find Traders</button>
+        </div>
+      </div>
+    </div>
+    <div class="typing-indicator" id="typingIndicator">
+      <div class="typing-dot"></div>
+      <div class="typing-dot"></div>
+      <div class="typing-dot"></div>
+    </div>
+    <div class="chatbot-input">
+      <input type="text" id="chat-input" placeholder="Ask me anything..." onkeypress="if(event.key==='Enter') sendMessage()">
+      <button class="send-btn" onclick="sendMessage()">➤</button>
+    </div>
+  </div>
+
   <nav class="bottom-nav">
     <button class="nav-btn active">
       <span>🏠</span>
@@ -1021,7 +1266,7 @@
   </nav>
 
   <script>
-    console.log('🌾 RTCP v5.0 - Complete Platform with Authentication!');
+    console.log('🌾 RTCP v5.1 - Complete Platform with Enhanced AI Assistant!');
     
     // Check if user is logged in
     let currentUser = localStorage.getItem('rtcpUser');
@@ -1091,6 +1336,135 @@
       
       document.getElementById(tabName + '-tab').classList.add('active');
       event.target.classList.add('active');
+    }
+    
+    // Chatbot functions
+    function toggleChatbot() {
+      const chatbot = document.getElementById('chatbot');
+      chatbot.classList.toggle('show');
+    }
+    
+    function sendMessage() {
+      const input = document.getElementById('chat-input');
+      const message = input.value.trim();
+      
+      if (message) {
+        addUserMessage(message);
+        input.value = '';
+        
+        // Show typing indicator
+        document.getElementById('typingIndicator').classList.add('show');
+        
+        // Simulate AI response with delay
+        setTimeout(() => {
+          document.getElementById('typingIndicator').classList.remove('show');
+          const response = getAIResponse(message);
+          addBotMessage(response);
+        }, 1500);
+      }
+    }
+    
+    function askBot(topic) {
+      addUserMessage(topic);
+      
+      // Show typing indicator
+      document.getElementById('typingIndicator').classList.add('show');
+      
+      setTimeout(() => {
+        document.getElementById('typingIndicator').classList.remove('show');
+        const response = getAIResponse(topic);
+        addBotMessage(response);
+      }, 1500);
+    }
+    
+    function addUserMessage(text) {
+      const messagesDiv = document.getElementById('chat-messages');
+      const messageDiv = document.createElement('div');
+      messageDiv.className = 'message user';
+      messageDiv.innerHTML = `<p>${text}</p>`;
+      messagesDiv.appendChild(messageDiv);
+      messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    }
+    
+    function addBotMessage(text) {
+      const messagesDiv = document.getElementById('chat-messages');
+      const messageDiv = document.createElement('div');
+      messageDiv.className = 'message bot';
+      messageDiv.innerHTML = `<p>${text}</p>`;
+      messagesDiv.appendChild(messageDiv);
+      messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    }
+    
+    function getAIResponse(message) {
+      const msg = message.toLowerCase();
+      
+      // Wheat related queries
+      if (msg.includes('wheat') && (msg.includes('price') || msg.includes('rate'))) {
+        return '🌾 <strong>Current Wheat Price:</strong> ₹2,150/quintal (+5.2%)<br><br><strong>Best Selling Time:</strong> June-September<br><strong>Harvest Period:</strong> March-May (prices dip -10%)<br><strong>Peak Price:</strong> July<br><br>💡 <strong>Tip:</strong> Avoid selling in March-April. Wait for June-Sep when prices recover by 5-15%!';
+      }
+      
+      // Rice related queries
+      if (msg.includes('rice') && (msg.includes('price') || msg.includes('rate'))) {
+        return '🌾 <strong>Current Rice Price:</strong> ₹3,200/quintal (+3.8%)<br><br><strong>Best Selling Time:</strong> January-April<br><strong>Kharif Harvest:</strong> Oct-Dec (prices dip -8%)<br><strong>Basmati Aging:</strong> 3-6 months improves price<br><br>💡 <strong>Tip:</strong> For Basmati, aging 3-6 months can increase price by 10-15%!';
+      }
+      
+      // Cotton related queries
+      if (msg.includes('cotton') && (msg.includes('price') || msg.includes('rate'))) {
+        return '🌱 <strong>Current Cotton Price:</strong> ₹6,800/quintal (-2.1%)<br><br><strong>Best Selling Time:</strong> February-May<br><strong>Harvest Period:</strong> Oct-Jan (prices dip -15%)<br><strong>Off-Season Rally:</strong> Jun-Sep (+25% potential)<br><br>💡 <strong>Tip:</strong> Hold inventory till Feb-May for 10-20% better prices!';
+      }
+      
+      // Best time to sell queries
+      if (msg.includes('best time') || msg.includes('when to sell') || msg.includes('selling time')) {
+        return '📈 <strong>Best Selling Times by Crop:</strong><br><br>🌾 <strong>Wheat:</strong> June-September (5-15% higher)<br>🌾 <strong>Rice:</strong> January-April (8-12% higher)<br>🌱 <strong>Cotton:</strong> February-May (10-20% higher)<br><br>💡 <strong>Strategy:</strong> Use staggered selling - 30-40% at harvest, 30-40% post-harvest, 20-30% lean season!';
+      }
+      
+      // Subsidy queries
+      if (msg.includes('subsidy') || msg.includes('subsidies') || msg.includes('scheme')) {
+        return '🏛️ <strong>Major Government Subsidies:</strong><br><br>💰 <strong>PM-KISAN:</strong> ₹6,000/year (3 installments)<br>☀️ <strong>Solar Pump:</strong> ₹60,000 (60% subsidy)<br>💧 <strong>Micro-Irrigation:</strong> ₹45,000-₹90,000<br>🛡️ <strong>Crop Insurance:</strong> ₹50,000 coverage<br><br>📱 <strong>Gujarat Special:</strong> ₹6,000 smartphone subsidy!<br><br>Check the Subsidies tab for eligibility checker!';
+      }
+      
+      // PM-KISAN queries
+      if (msg.includes('pm kisan') || msg.includes('pm-kisan') || msg.includes('pmkisan')) {
+        return '💳 <strong>PM-KISAN Scheme:</strong><br><br>💰 <strong>Amount:</strong> ₹6,000/year<br>📅 <strong>Installments:</strong> ₹2,000 × 3 times<br>👥 <strong>Beneficiaries:</strong> 9.7 crore farmers<br>✅ <strong>Requirement:</strong> Aadhaar + Bank account<br><br>🔍 <strong>Check Status:</strong> Visit pmkisan.gov.in<br>📞 <strong>Helpline:</strong> 155261 / 011-24300606';
+      }
+      
+      // Trader queries
+      if (msg.includes('trader') || msg.includes('buy') || msg.includes('sell to')) {
+        return '🤝 <strong>Featured Verified Trader:</strong><br><br>👤 <strong>Rajesh Singh Traders</strong> ✓<br>⭐ <strong>Rating:</strong> 4.9/5.0<br>💼 <strong>Deals:</strong> 2,847 completed<br>💰 <strong>Trade Value:</strong> ₹125 Crore<br>⚡ <strong>Payment:</strong> Within 24 hours<br><br>📞 <strong>Contact:</strong> +91-98765-43210<br><br>Check the Traders tab for full details!';
+      }
+      
+      // Weather queries
+      if (msg.includes('weather') || msg.includes('temperature') || msg.includes('rain')) {
+        return '🌤️ <strong>Current Weather - Ludhiana:</strong><br><br>🌡️ <strong>Temperature:</strong> 6°C<br>☁️ <strong>Condition:</strong> Some clouds<br>💧 <strong>Humidity:</strong> 70%<br>💨 <strong>Wind:</strong> 8.1 km/h<br><br>🌾 <strong>Farming Advice:</strong> Good conditions for wheat harvesting. No rain expected in next 48 hours.';
+      }
+      
+      // Gujarat queries
+      if (msg.includes('gujarat')) {
+        return '🇮🇳 <strong>Gujarat Special Schemes:</strong><br><br>📱 <strong>Smartphone Subsidy:</strong> ₹6,000 (40% of cost)<br>💧 <strong>Micro-Irrigation:</strong> 70-90% subsidy (highest in India!)<br>• 70% for general farmers (≥2 ha)<br>• 80% in dark-zone talukas<br>• 90% for SC/ST in dark zones<br><br>🌱 <strong>Seed Replacement:</strong> 10% subsidy<br><br>Apply via GGRC portal: ggrc.co.in';
+      }
+      
+      // Market trend queries
+      if (msg.includes('trend') || msg.includes('forecast') || msg.includes('prediction')) {
+        return '📊 <strong>Market Trends & Forecast:</strong><br><br>📈 <strong>Bullish:</strong> Wheat, Rice (seasonal recovery)<br>📉 <strong>Bearish:</strong> Cotton (temporary dip)<br>➡️ <strong>Stable:</strong> Sugarcane<br><br>🔮 <strong>AI Prediction (Next 30 days):</strong><br>• Wheat: +3-5% (lean season demand)<br>• Rice: +2-4% (export orders)<br>• Cotton: -1-2% (harvest pressure)<br><br>Check Market Trends tab for detailed analysis!';
+      }
+      
+      // Help queries
+      if (msg.includes('help') || msg.includes('support') || msg.includes('contact')) {
+        return '📞 <strong>Need Help?</strong><br><br>🆘 <strong>Toll-Free Helpline:</strong> 1800-XXX-XXXX<br>💬 <strong>WhatsApp Support:</strong> +91-XXXXX-XXXXX<br>📧 <strong>Email:</strong> support@rtcp.in<br>⏰ <strong>Hours:</strong> 6 AM - 10 PM (All days)<br><br>🌐 <strong>Languages:</strong> Hindi, Punjabi, Gujarati, English<br><br>We\'re here to help! 🙏';
+      }
+      
+      // Storage queries
+      if (msg.includes('storage') || msg.includes('store') || msg.includes('warehouse')) {
+        return '🏢 <strong>Crop Storage Tips:</strong><br><br>✅ <strong>Best Practices:</strong><br>• Keep moisture below 12%<br>• Use proper ventilation<br>• Regular pest inspection<br>• Maintain 15-20°C temperature<br><br>💰 <strong>Storage Benefits:</strong><br>• Wheat: +5-15% in 2-4 months<br>• Rice: +8-12% in 3-5 months<br>• Cotton: +10-20% in 3-6 months<br><br>⚠️ <strong>Warning:</strong> Monitor for moisture & pests!';
+      }
+      
+      // MSP queries
+      if (msg.includes('msp') || msg.includes('minimum support price')) {
+        return '💵 <strong>Minimum Support Prices (MSP) 2024-25:</strong><br><br>🌾 <strong>Wheat:</strong> ₹2,125/quintal<br>🌾 <strong>Paddy (Common):</strong> ₹2,183/quintal<br>🌾 <strong>Paddy (Grade A):</strong> ₹2,203/quintal<br>🌱 <strong>Cotton (Medium):</strong> ₹6,620/quintal<br>🎋 <strong>Sugarcane:</strong> ₹340/quintal<br><br>📍 <strong>Procurement:</strong> FCI & state agencies<br>💡 <strong>Tip:</strong> Market prices often 2-5% above MSP!';
+      }
+      
+      // Default response
+      return '🤖 I can help you with:<br><br>💰 <strong>Crop Prices:</strong> Current rates & trends<br>📈 <strong>Best Selling Time:</strong> Seasonal strategies<br>🏛️ <strong>Subsidies:</strong> Government schemes<br>🤝 <strong>Traders:</strong> Verified buyer contacts<br>🌤️ <strong>Weather:</strong> Local forecasts<br>📊 <strong>Market Trends:</strong> AI predictions<br><br>Just ask me anything! For example:<br>• "What is wheat price?"<br>• "When to sell rice?"<br>• "Show me subsidies"<br>• "Find traders near me"';
     }
     
     document.querySelectorAll('.nav-btn').forEach(btn => {
