@@ -49,6 +49,21 @@
     }
     .logo p { font-size: 11px; color: #888; letter-spacing: 1px; }
     .header-right { display: flex; gap: 15px; align-items: center; flex-wrap: wrap; }
+    .language-selector {
+      background: rgba(255, 215, 0, 0.1);
+      border: 2px solid #FFD700;
+      padding: 8px 15px;
+      border-radius: 20px;
+      color: #FFD700;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .language-selector:hover {
+      background: rgba(255, 215, 0, 0.2);
+      transform: scale(1.05);
+    }
     .weather-widget, .location-badge {
       background: rgba(255, 215, 0, 0.1);
       border: 2px solid #FFD700;
@@ -239,18 +254,6 @@
       border-radius: 25px;
       padding: 30px;
       transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
-    }
-    .subsidy-card::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      right: -50%;
-      width: 100px;
-      height: 100px;
-      background: radial-gradient(circle, rgba(255, 215, 0, 0.2), transparent);
-      border-radius: 50%;
     }
     .subsidy-card:hover {
       transform: translateY(-10px);
@@ -415,6 +418,173 @@
       border-radius: 15px;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     }
+    
+    /* AI Assistant Chatbot */
+    .ai-assistant-btn {
+      position: fixed;
+      bottom: 100px;
+      right: 30px;
+      width: 70px;
+      height: 70px;
+      background: linear-gradient(135deg, #FFD700, #FFA500);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 36px;
+      cursor: pointer;
+      box-shadow: 0 10px 40px rgba(255, 215, 0, 0.5);
+      z-index: 999;
+      transition: all 0.3s ease;
+      animation: bounce 2s infinite;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    .ai-assistant-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 15px 50px rgba(255, 215, 0, 0.7);
+    }
+    .chatbot-window {
+      position: fixed;
+      bottom: 100px;
+      right: 30px;
+      width: 400px;
+      height: 600px;
+      background: rgba(0, 0, 0, 0.95);
+      border: 3px solid #FFD700;
+      border-radius: 25px;
+      display: none;
+      flex-direction: column;
+      z-index: 1000;
+      box-shadow: 0 20px 60px rgba(255, 215, 0, 0.4);
+      backdrop-filter: blur(10px);
+    }
+    .chatbot-window.show {
+      display: flex;
+      animation: slideUp 0.3s ease-out;
+    }
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .chatbot-header {
+      background: linear-gradient(135deg, #FFD700, #FFA500);
+      padding: 20px;
+      border-radius: 22px 22px 0 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .chatbot-header h3 {
+      color: #000;
+      font-size: 20px;
+      font-weight: 900;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .close-chat {
+      background: rgba(0, 0, 0, 0.2);
+      border: none;
+      color: #000;
+      font-size: 24px;
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-weight: 900;
+      transition: all 0.3s ease;
+    }
+    .close-chat:hover {
+      background: rgba(0, 0, 0, 0.4);
+      transform: rotate(90deg);
+    }
+    .chatbot-messages {
+      flex: 1;
+      padding: 20px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    .message {
+      padding: 15px;
+      border-radius: 15px;
+      max-width: 80%;
+      animation: messageIn 0.3s ease-out;
+    }
+    @keyframes messageIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .message.bot {
+      background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 165, 0, 0.1));
+      border: 2px solid rgba(255, 215, 0, 0.3);
+      align-self: flex-start;
+      color: #fff;
+    }
+    .message.user {
+      background: linear-gradient(135deg, rgba(0, 150, 255, 0.2), rgba(0, 100, 200, 0.1));
+      border: 2px solid rgba(0, 150, 255, 0.3);
+      align-self: flex-end;
+      color: #fff;
+    }
+    .chatbot-input {
+      padding: 20px;
+      border-top: 2px solid rgba(255, 215, 0, 0.3);
+      display: flex;
+      gap: 10px;
+    }
+    .chatbot-input input {
+      flex: 1;
+      padding: 15px;
+      border-radius: 25px;
+      border: 2px solid rgba(255, 215, 0, 0.3);
+      background: rgba(255, 215, 0, 0.05);
+      color: #fff;
+      font-size: 14px;
+    }
+    .chatbot-input input:focus {
+      outline: none;
+      border-color: #FFD700;
+    }
+    .send-btn {
+      background: linear-gradient(135deg, #FFD700, #FFA500);
+      border: none;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      font-size: 20px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .send-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 5px 20px rgba(255, 215, 0, 0.5);
+    }
+    .quick-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+    .quick-btn {
+      background: rgba(255, 215, 0, 0.1);
+      border: 2px solid rgba(255, 215, 0, 0.3);
+      color: #FFD700;
+      padding: 8px 15px;
+      border-radius: 20px;
+      font-size: 12px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .quick-btn:hover {
+      background: rgba(255, 215, 0, 0.2);
+      border-color: #FFD700;
+    }
+    
     .bottom-nav { 
       position: fixed; 
       bottom: 0; 
@@ -457,6 +627,8 @@
       .crops-grid { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 15px; }
       .subsidy-grid { grid-template-columns: 1fr; }
       .section-title { font-size: 22px; }
+      .chatbot-window { width: 90%; right: 5%; }
+      .ai-assistant-btn { bottom: 90px; right: 20px; width: 60px; height: 60px; font-size: 30px; }
     }
   </style>
 </head>
@@ -465,36 +637,44 @@
     <div class="logo">
       <span class="logo-icon">🌾</span>
       <div>
-        <h1>RTCP</h1>
-        <p>COMPLETE FARMER PLATFORM</p>
+        <h1 id="app-title">RTCP</h1>
+        <p id="app-subtitle">COMPLETE FARMER PLATFORM</p>
       </div>
     </div>
     <div class="header-right">
+      <select class="language-selector" id="language" onchange="changeLanguage()">
+        <option value="en">🌐 English</option>
+        <option value="hi">🇮🇳 हिंदी</option>
+        <option value="gu">🇮🇳 ગુજરાતી</option>
+        <option value="pa">🇮🇳 ਪੰਜਾਬੀ</option>
+        <option value="mr">🇮🇳 मराठी</option>
+        <option value="ta">🇮🇳 தமிழ்</option>
+      </select>
       <div class="weather-widget">
         <span>🌤️</span>
-        <span>6°C | Ludhiana</span>
+        <span id="weather-info">6°C | Ludhiana</span>
       </div>
-      <div class="location-badge">📍 Punjab</div>
+      <div class="location-badge" id="location-badge">📍 Punjab</div>
     </div>
   </header>
 
   <main class="container">
     <div class="hero-banner">
-      <h2>🚀 India's #1 Farmer Platform</h2>
-      <p>Real-Time Prices • AI Predictions • Government Subsidies • Direct Trading</p>
+      <h2 id="hero-title">🚀 India's #1 Farmer Platform</h2>
+      <p id="hero-subtitle">Real-Time Prices • AI Predictions • Government Subsidies • Direct Trading</p>
     </div>
 
     <div class="tab-navigation">
-      <button class="tab-btn active" onclick="showTab('prices')">💰 Live Prices</button>
-      <button class="tab-btn" onclick="showTab('subsidies')">🏛️ Govt Subsidies</button>
-      <button class="tab-btn" onclick="showTab('analytics')">📊 Analytics</button>
-      <button class="tab-btn" onclick="showTab('traders')">🤝 Traders</button>
+      <button class="tab-btn active" onclick="showTab('prices')" id="tab-prices">💰 Live Prices</button>
+      <button class="tab-btn" onclick="showTab('subsidies')" id="tab-subsidies">🏛️ Govt Subsidies</button>
+      <button class="tab-btn" onclick="showTab('analytics')" id="tab-analytics">📊 Analytics</button>
+      <button class="tab-btn" onclick="showTab('traders')" id="tab-traders">🤝 Traders</button>
     </div>
 
     <!-- PRICES TAB -->
     <div id="prices-tab" class="tab-content active">
       <div class="section-header">
-        <h2 class="section-title">💰 Live Market Prices</h2>
+        <h2 class="section-title" id="prices-title">💰 Live Market Prices</h2>
         <span class="live-indicator">🔴 LIVE UPDATES</span>
       </div>
 
@@ -508,7 +688,7 @@
         </div>
         <div class="crop-card">
           <div class="crop-icon">🌾</div>
-          <h4>Rice (Basmati)</h4>
+          <h4>Rice</h4>
           <p class="crop-price" data-base="3200">₹3,200</p>
           <p class="price-range">₹3,150 - ₹3,250</p>
           <span class="change up">↑ +3.8%</span>
@@ -547,7 +727,7 @@
     <!-- SUBSIDIES TAB -->
     <div id="subsidies-tab" class="tab-content">
       <div class="section-header">
-        <h2 class="section-title">🏛️ Government Subsidies</h2>
+        <h2 class="section-title" id="subsidies-title">🏛️ Government Subsidies</h2>
       </div>
 
       <div class="chart-section">
@@ -579,37 +759,37 @@
             <li>Reduce electricity costs</li>
             <li>Eco-friendly farming</li>
             <li>3-5 HP pump subsidy</li>
-            <li>State-wise implementation</li>
+            <li>Available in all states</li>
           </ul>
           <button class="apply-btn" onclick="alert('Apply through state agriculture portal')">Apply Now</button>
         </div>
 
         <div class="subsidy-card">
           <span class="subsidy-icon">💧</span>
-          <h3>Micro-Irrigation</h3>
-          <div class="subsidy-amount">₹45,000</div>
-          <p>55% subsidy for small/marginal farmers on drip irrigation</p>
+          <h3>Micro-Irrigation (Gujarat: 70-90%)</h3>
+          <div class="subsidy-amount">₹45,000-₹80,000</div>
+          <p>High subsidy for drip/sprinkler irrigation in Gujarat</p>
           <ul>
-            <li>Save 40-60% water</li>
-            <li>Increase crop yield</li>
-            <li>Drip & sprinkler systems</li>
-            <li>PMKSY scheme</li>
+            <li>70% for general farmers (≥2 ha)</li>
+            <li>80% in dark-zone talukas</li>
+            <li>90% for SC/ST in dark zones</li>
+            <li>Apply via GGRC portal</li>
           </ul>
-          <button class="apply-btn" onclick="alert('Contact nearest agriculture office')">Learn More</button>
+          <button class="apply-btn" onclick="alert('Gujarat farmers: Visit ggrc.co.in')">Apply (Gujarat)</button>
         </div>
 
         <div class="subsidy-card">
-          <span class="subsidy-icon">🔒</span>
-          <h3>Solar Fencing (UP)</h3>
-          <div class="subsidy-amount">₹1.63 Lakh</div>
-          <p>60% subsidy on solar fencing to protect crops from animals</p>
+          <span class="subsidy-icon">📱</span>
+          <h3>Smartphone Subsidy (Gujarat)</h3>
+          <div class="subsidy-amount">₹6,000</div>
+          <p>40% subsidy on smartphones for Gujarat farmers</p>
           <ul>
-            <li>Protect crops 24/7</li>
-            <li>No electricity cost</li>
-            <li>₹1.43-1.63L per hectare</li>
-            <li>UP specific scheme</li>
+            <li>Max ₹6,000 or 40% cost</li>
+            <li>Access weather alerts</li>
+            <li>Crop disease info</li>
+            <li>Online scheme applications</li>
           </ul>
-          <button class="apply-btn" onclick="alert('UP farmers only - Apply online')">Apply (UP Only)</button>
+          <button class="apply-btn" onclick="alert('Gujarat specific - Check eligibility')">Apply (Gujarat)</button>
         </div>
 
         <div class="subsidy-card">
@@ -653,6 +833,7 @@
               <option value="up">Uttar Pradesh</option>
               <option value="maharashtra">Maharashtra</option>
               <option value="karnataka">Karnataka</option>
+              <option value="gujarat">Gujarat</option>
             </select>
           </div>
           <div class="form-group">
@@ -670,6 +851,7 @@
               <option value="small">Small (< 2 hectares)</option>
               <option value="marginal">Marginal (< 1 hectare)</option>
               <option value="large">Large (> 2 hectares)</option>
+              <option value="scst">SC/ST Category</option>
             </select>
           </div>
           <button type="submit" class="check-btn">Check Eligibility</button>
@@ -705,6 +887,32 @@
     </div>
   </main>
 
+  <!-- AI Assistant Button -->
+  <div class="ai-assistant-btn" onclick="toggleChatbot()">🤖</div>
+
+  <!-- Chatbot Window -->
+  <div class="chatbot-window" id="chatbot">
+    <div class="chatbot-header">
+      <h3>🤖 RTCP AI Assistant</h3>
+      <button class="close-chat" onclick="toggleChatbot()">×</button>
+    </div>
+    <div class="chatbot-messages" id="chat-messages">
+      <div class="message bot">
+        <p id="welcome-msg">👋 Namaste! I'm your AI farming assistant. Ask me about:</p>
+        <div class="quick-actions">
+          <button class="quick-btn" onclick="askBot('crop prices')">💰 Crop Prices</button>
+          <button class="quick-btn" onclick="askBot('subsidies')">🏛️ Subsidies</button>
+          <button class="quick-btn" onclick="askBot('weather')">🌤️ Weather</button>
+          <button class="quick-btn" onclick="askBot('pm kisan')">💳 PM-KISAN</button>
+        </div>
+      </div>
+    </div>
+    <div class="chatbot-input">
+      <input type="text" id="chat-input" placeholder="Type your question..." onkeypress="if(event.key==='Enter') sendMessage()">
+      <button class="send-btn" onclick="sendMessage()">➤</button>
+    </div>
+  </div>
+
   <nav class="bottom-nav">
     <button class="nav-btn active">
       <span>🏠</span>
@@ -725,8 +933,68 @@
   </nav>
 
   <script>
-    console.log('🌾 RTCP v3.0 - Complete Farmer Platform Loaded!');
-    console.log('💰 Prices • 🏛️ Subsidies • 📊 Analytics • 🤝 Traders');
+    console.log('🌾 RTCP v4.0 - Complete Platform with AI Assistant!');
+    console.log('💰 Prices • 🏛️ Subsidies • 📊 Analytics • 🤖 AI Assistant • 🌐 6 Languages');
+    
+    // Language translations
+    const translations = {
+      en: {
+        appTitle: 'RTCP',
+        appSubtitle: 'COMPLETE FARMER PLATFORM',
+        heroTitle: "🚀 India's #1 Farmer Platform",
+        heroSubtitle: 'Real-Time Prices • AI Predictions • Government Subsidies • Direct Trading',
+        welcomeMsg: "👋 Namaste! I'm your AI farming assistant. Ask me about:"
+      },
+      hi: {
+        appTitle: 'आरटीसीपी',
+        appSubtitle: 'संपूर्ण किसान मंच',
+        heroTitle: '🚀 भारत का #1 किसान मंच',
+        heroSubtitle: 'रीयल-टाइम मूल्य • एआई भविष्यवाणी • सरकारी सब्सिडी • सीधा व्यापार',
+        welcomeMsg: "👋 नमस्ते! मैं आपका एआई खेती सहायक हूं। मुझसे पूछें:"
+      },
+      gu: {
+        appTitle: 'આરટીસીપી',
+        appSubtitle: 'સંપૂર્ણ ખેડૂત પ્લેટફોર્મ',
+        heroTitle: '🚀 ભારતનું #1 ખેડૂત પ્લેટફોર્મ',
+        heroSubtitle: 'રીઅલ-ટાઇમ ભાવ • એઆઇ આગાહી • સરકારી સબસિડી • સીધો વેપાર',
+        welcomeMsg: "👋 નમસ્તે! હું તમારો એઆઇ ખેતી સહાયક છું. મને પૂછો:"
+      },
+      pa: {
+        appTitle: 'ਆਰਟੀਸੀਪੀ',
+        appSubtitle: 'ਸੰਪੂਰਨ ਕਿਸਾਨ ਪਲੇਟਫਾਰਮ',
+        heroTitle: '🚀 ਭਾਰਤ ਦਾ #1 ਕਿਸਾਨ ਪਲੇਟਫਾਰਮ',
+        heroSubtitle: 'ਰੀਅਲ-ਟਾਈਮ ਕੀਮਤਾਂ • ਏਆਈ ਭਵਿੱਖਬਾਣੀ • ਸਰਕਾਰੀ ਸਬਸਿਡੀ • ਸਿੱਧਾ ਵਪਾਰ',
+        welcomeMsg: "👋 ਸਤ ਸ੍ਰੀ ਅਕਾਲ! ਮੈਂ ਤੁਹਾਡਾ ਏਆਈ ਖੇਤੀ ਸਹਾਇਕ ਹਾਂ। ਮੈਨੂੰ ਪੁੱਛੋ:"
+      },
+      mr: {
+        appTitle: 'आरटीसीपी',
+        appSubtitle: 'संपूर्ण शेतकरी व्यासपीठ',
+        heroTitle: '🚀 भारताचे #1 शेतकरी व्यासपीठ',
+        heroSubtitle: 'रिअल-टाइम किंमती • एआय अंदाज • सरकारी अनुदान • थेट व्यापार',
+        welcomeMsg: "👋 नमस्कार! मी तुमचा एआय शेती सहाय्यक आहे. मला विचारा:"
+      },
+      ta: {
+        appTitle: 'ஆர்டிசிபி',
+        appSubtitle: 'முழுமையான விவசாயி தளம்',
+        heroTitle: '🚀 இந்தியாவின் #1 விவசாயி தளம்',
+        heroSubtitle: 'நேரடி விலைகள் • AI கணிப்பு • அரசு மானியம் • நேரடி வர்த்தகம்',
+        welcomeMsg: "👋 வணக்கம்! நான் உங்கள் AI விவசாய உதவியாளர். என்னிடம் கேளுங்கள்:"
+      }
+    };
+    
+    function changeLanguage() {
+      const lang = document.getElementById('language').value;
+      const t = translations[lang];
+      
+      document.getElementById('app-title').textContent = t.appTitle;
+      document.getElementById('app-subtitle').textContent = t.appSubtitle;
+      document.getElementById('hero-title').textContent = t.heroTitle;
+      document.getElementById('hero-subtitle').textContent = t.heroSubtitle;
+      document.getElementById('welcome-msg').textContent = t.welcomeMsg;
+      
+      // Show language change notification
+      addBotMessage(`✅ Language changed to ${document.getElementById('language').options[document.getElementById('language').selectedIndex].text}`);
+    }
     
     // Tab switching
     function showTab(tabName) {
@@ -762,10 +1030,29 @@
       schemes.push('PM-KISAN: ₹6,000/year');
       totalSubsidy += 6000;
       
+      // Gujarat specific schemes
+      if (state === 'gujarat') {
+        schemes.push('Smartphone Subsidy (Gujarat): ₹6,000');
+        totalSubsidy += 6000;
+        
+        if (category === 'scst') {
+          schemes.push('Micro-Irrigation (Gujarat SC/ST): ₹80,000-₹90,000 (85-90% subsidy)');
+          totalSubsidy += 85000;
+        } else if (land >= 2) {
+          schemes.push('Micro-Irrigation (Gujarat): ₹60,000-₹70,000 (70% subsidy)');
+          totalSubsidy += 65000;
+        } else {
+          schemes.push('Micro-Irrigation (Gujarat): ₹70,000-₹80,000 (70-80% subsidy)');
+          totalSubsidy += 75000;
+        }
+      }
+      
       // Small/Marginal farmer benefits
       if (category === 'small' || category === 'marginal') {
-        schemes.push('Micro-Irrigation: ₹45,000 (55% subsidy)');
-        totalSubsidy += 45000;
+        if (state !== 'gujarat') {
+          schemes.push('Micro-Irrigation: ₹45,000 (55% subsidy)');
+          totalSubsidy += 45000;
+        }
         schemes.push('PM-KUSUM Solar Pump: ₹60,000 (60% subsidy)');
         totalSubsidy += 60000;
       }
@@ -795,6 +1082,74 @@
       totalElement.textContent = '₹' + totalSubsidy.toLocaleString('en-IN');
       
       resultBox.classList.add('show');
+    }
+    
+    // Chatbot functions
+    function toggleChatbot() {
+      const chatbot = document.getElementById('chatbot');
+      chatbot.classList.toggle('show');
+    }
+    
+    function sendMessage() {
+      const input = document.getElementById('chat-input');
+      const message = input.value.trim();
+      
+      if (message) {
+        addUserMessage(message);
+        input.value = '';
+        
+        // Simulate AI response
+        setTimeout(() => {
+          const response = getAIResponse(message);
+          addBotMessage(response);
+        }, 1000);
+      }
+    }
+    
+    function askBot(topic) {
+      addUserMessage(topic);
+      setTimeout(() => {
+        const response = getAIResponse(topic);
+        addBotMessage(response);
+      }, 1000);
+    }
+    
+    function addUserMessage(text) {
+      const messagesDiv = document.getElementById('chat-messages');
+      const messageDiv = document.createElement('div');
+      messageDiv.className = 'message user';
+      messageDiv.innerHTML = `<p>${text}</p>`;
+      messagesDiv.appendChild(messageDiv);
+      messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    }
+    
+    function addBotMessage(text) {
+      const messagesDiv = document.getElementById('chat-messages');
+      const messageDiv = document.createElement('div');
+      messageDiv.className = 'message bot';
+      messageDiv.innerHTML = `<p>${text}</p>`;
+      messagesDiv.appendChild(messageDiv);
+      messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    }
+    
+    function getAIResponse(message) {
+      const msg = message.toLowerCase();
+      
+      if (msg.includes('price') || msg.includes('crop')) {
+        return '💰 Current prices: Wheat ₹2,150/quintal (+5.2%), Rice ₹3,200/quintal (+3.8%), Cotton ₹6,800/quintal (-2.1%). Check the "Live Prices" tab for more!';
+      } else if (msg.includes('subsidy') || msg.includes('scheme')) {
+        return '🏛️ Major subsidies available: PM-KISAN (₹6,000/year), Solar Pump (₹60,000), Micro-Irrigation (₹45,000-₹90,000), Crop Insurance. Check "Govt Subsidies" tab for details!';
+      } else if (msg.includes('weather')) {
+        return '🌤️ Current weather in Ludhiana: 6°C, Some clouds, 70% humidity. Good conditions for wheat harvesting. Wind: 8.1 km/h.';
+      } else if (msg.includes('pm kisan') || msg.includes('pm-kisan')) {
+        return '💳 PM-KISAN provides ₹6,000/year in 3 installments of ₹2,000 each. Check your status at pmkisan.gov.in with your Aadhaar number. 9.7 crore farmers already benefited!';
+      } else if (msg.includes('gujarat')) {
+        return '🇮🇳 Gujarat farmers get special benefits: Smartphone subsidy (₹6,000), High micro-irrigation subsidy (70-90%), Seed replacement subsidy (10%). Check eligibility in Subsidies tab!';
+      } else if (msg.includes('help') || msg.includes('support')) {
+        return '📞 Need help? Call our toll-free helpline: 1800-XXX-XXXX or visit your nearest agriculture office. We support 6 languages!';
+      } else {
+        return '🤖 I can help you with: Crop prices, Government subsidies, Weather updates, PM-KISAN status, Gujarat schemes, and more. What would you like to know?';
+      }
     }
     
     // Navigation
