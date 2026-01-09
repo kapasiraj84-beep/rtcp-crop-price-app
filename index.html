@@ -14,6 +14,193 @@
       min-height: 100vh;
     }
     
+    /* Authentication Modal */
+    .auth-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.95);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2002;
+      backdrop-filter: blur(10px);
+    }
+    .auth-overlay.hidden {
+      display: none;
+    }
+    .auth-modal {
+      background: linear-gradient(135deg, #1a1a1a, #0a0a0a);
+      border: 3px solid #FFD700;
+      border-radius: 30px;
+      padding: 50px;
+      max-width: 500px;
+      width: 90%;
+      box-shadow: 0 20px 60px rgba(255, 215, 0, 0.4);
+      animation: slideIn 0.5s ease-out;
+    }
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(-50px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .auth-modal h2 {
+      color: #FFD700;
+      font-size: 36px;
+      margin-bottom: 10px;
+      text-align: center;
+      font-weight: 900;
+    }
+    .auth-modal p {
+      color: #888;
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 16px;
+    }
+    .auth-tabs {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 30px;
+    }
+    .auth-tab {
+      flex: 1;
+      padding: 15px;
+      background: rgba(255, 215, 0, 0.1);
+      border: 2px solid rgba(255, 215, 0, 0.3);
+      border-radius: 15px;
+      color: #FFD700;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-align: center;
+      font-size: 16px;
+    }
+    .auth-tab.active {
+      background: linear-gradient(135deg, #FFD700, #FFA500);
+      color: #000;
+      border-color: #FFD700;
+    }
+    .auth-tab:hover {
+      transform: translateY(-2px);
+    }
+    .auth-form {
+      display: none;
+    }
+    .auth-form.active {
+      display: block;
+      animation: fadeIn 0.3s ease-in;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    .form-group {
+      margin: 20px 0;
+    }
+    .form-group label {
+      display: block;
+      color: #FFD700;
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .form-group input, .form-group select {
+      width: 100%;
+      padding: 15px;
+      border-radius: 15px;
+      border: 2px solid rgba(255, 215, 0, 0.3);
+      background: rgba(255, 215, 0, 0.05);
+      color: #fff;
+      font-size: 16px;
+      transition: all 0.3s ease;
+    }
+    .form-group input:focus, .form-group select:focus {
+      outline: none;
+      border-color: #FFD700;
+      box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+    }
+    .form-group input::placeholder {
+      color: #666;
+    }
+    .auth-btn {
+      width: 100%;
+      padding: 18px;
+      background: linear-gradient(135deg, #FFD700, #FFA500);
+      border: none;
+      border-radius: 25px;
+      color: #000;
+      font-size: 18px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: 20px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+    .auth-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 30px rgba(255, 215, 0, 0.5);
+    }
+    .auth-btn:active {
+      transform: scale(0.98);
+    }
+    .forgot-password {
+      text-align: right;
+      margin-top: 10px;
+    }
+    .forgot-password a {
+      color: #FFD700;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+    }
+    .forgot-password a:hover {
+      text-decoration: underline;
+    }
+    .divider {
+      display: flex;
+      align-items: center;
+      margin: 25px 0;
+      color: #666;
+      font-size: 14px;
+    }
+    .divider::before,
+    .divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: rgba(255, 215, 0, 0.2);
+    }
+    .divider span {
+      padding: 0 15px;
+    }
+    .social-login {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    .social-btn {
+      flex: 1;
+      padding: 12px;
+      border-radius: 15px;
+      border: 2px solid rgba(255, 215, 0, 0.3);
+      background: rgba(255, 215, 0, 0.05);
+      color: #FFD700;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: 14px;
+    }
+    .social-btn:hover {
+      background: rgba(255, 215, 0, 0.1);
+      border-color: #FFD700;
+    }
+    
     /* Helpline Banner */
     .helpline-banner {
       background: linear-gradient(135deg, #FFD700, #FFA500);
@@ -167,6 +354,7 @@
       border: 2px solid #FFD700;
       padding: 6px 15px;
       border-radius: 20px;
+      cursor: pointer;
     }
     .user-avatar {
       width: 30px;
@@ -188,6 +376,21 @@
       border-radius: 10px;
       font-size: 10px;
       font-weight: 900;
+    }
+    .logout-btn {
+      background: rgba(255, 0, 0, 0.1);
+      border: 2px solid #ff4444;
+      color: #ff4444;
+      padding: 6px 15px;
+      border-radius: 15px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .logout-btn:hover {
+      background: rgba(255, 0, 0, 0.2);
+      transform: scale(1.05);
     }
     
     .container { max-width: 1400px; margin: 0 auto; padding: 20px; }
@@ -243,7 +446,6 @@
     }
     .tab-content { display: none; }
     .tab-content.active { display: block; animation: fadeIn 0.5s ease-in; }
-    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     
     /* Trend Cards */
     .trend-card {
@@ -478,6 +680,7 @@
     .nav-btn span { font-size: 10px; font-weight: 700; }
     
     @media (max-width: 768px) {
+      .auth-modal { padding: 35px 25px; }
       .helpline-banner a { font-size: 13px; }
       .premium-badge { top: 90px; right: 10px; padding: 8px 12px; font-size: 11px; }
       .header { top: 42px; padding: 12px 15px; }
@@ -491,6 +694,91 @@
   </style>
 </head>
 <body>
+  <!-- Authentication Overlay -->
+  <div class="auth-overlay" id="authOverlay">
+    <div class="auth-modal">
+      <h2>🌾 Welcome to RTCP</h2>
+      <p>India's #1 Farmer Platform</p>
+      
+      <div class="auth-tabs">
+        <div class="auth-tab active" onclick="switchAuthTab('login')">Login</div>
+        <div class="auth-tab" onclick="switchAuthTab('signup')">Sign Up</div>
+      </div>
+      
+      <!-- Login Form -->
+      <form class="auth-form active" id="loginForm" onsubmit="handleLogin(event)">
+        <div class="form-group">
+          <label>Mobile Number / Email</label>
+          <input type="text" id="loginIdentifier" placeholder="Enter mobile or email" required>
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" id="loginPassword" placeholder="Enter password" required>
+        </div>
+        <div class="forgot-password">
+          <a href="#" onclick="alert('Password reset link sent to your email/mobile!'); return false;">Forgot Password?</a>
+        </div>
+        <button type="submit" class="auth-btn">Login</button>
+        
+        <div class="divider"><span>OR</span></div>
+        
+        <div class="social-login">
+          <button type="button" class="social-btn" onclick="alert('Google login coming soon!')">
+            <span>🔍</span>
+            <span>Google</span>
+          </button>
+          <button type="button" class="social-btn" onclick="alert('Phone OTP login coming soon!')">
+            <span>📱</span>
+            <span>OTP</span>
+          </button>
+        </div>
+      </form>
+      
+      <!-- Signup Form -->
+      <form class="auth-form" id="signupForm" onsubmit="handleSignup(event)">
+        <div class="form-group">
+          <label>Full Name *</label>
+          <input type="text" id="signupName" placeholder="Enter your full name" required>
+        </div>
+        <div class="form-group">
+          <label>Mobile Number *</label>
+          <input type="tel" id="signupMobile" placeholder="Enter 10-digit mobile" pattern="[0-9]{10}" maxlength="10" required>
+        </div>
+        <div class="form-group">
+          <label>Email (Optional)</label>
+          <input type="email" id="signupEmail" placeholder="Enter email address">
+        </div>
+        <div class="form-group">
+          <label>State *</label>
+          <select id="signupState" required>
+            <option value="">Select your state</option>
+            <option value="punjab">Punjab</option>
+            <option value="haryana">Haryana</option>
+            <option value="up">Uttar Pradesh</option>
+            <option value="gujarat">Gujarat</option>
+            <option value="maharashtra">Maharashtra</option>
+            <option value="karnataka">Karnataka</option>
+            <option value="rajasthan">Rajasthan</option>
+            <option value="mp">Madhya Pradesh</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Password *</label>
+          <input type="password" id="signupPassword" placeholder="Create strong password (min 6 characters)" minlength="6" required>
+        </div>
+        <div class="form-group">
+          <label>Confirm Password *</label>
+          <input type="password" id="signupConfirmPassword" placeholder="Re-enter password" minlength="6" required>
+        </div>
+        <button type="submit" class="auth-btn">Create Account</button>
+        
+        <p style="color: #888; font-size: 12px; text-align: center; margin-top: 15px;">
+          By signing up, you agree to our Terms & Privacy Policy
+        </p>
+      </form>
+    </div>
+  </div>
+
   <!-- Helpline Banner -->
   <div class="helpline-banner">
     <a href="tel:18001801551">
@@ -565,17 +853,18 @@
       <h1>RTCP</h1>
     </div>
     <div class="header-right">
-      <div class="user-profile">
-        <div class="user-avatar">R</div>
-        <span class="user-name">Raj Kapasi</span>
-        <span class="user-plan">FREE</span>
+      <div class="user-profile" id="userProfile">
+        <div class="user-avatar" id="userAvatar">R</div>
+        <span class="user-name" id="userName">Raj Kapasi</span>
+        <span class="user-plan" id="userPlan">FREE</span>
       </div>
+      <button class="logout-btn" onclick="handleLogout()">Logout</button>
     </div>
   </header>
 
   <main class="container">
     <div class="hero-banner">
-      <h2>🚀 Welcome Back, Raj!</h2>
+      <h2>🚀 Welcome Back, <span id="heroName">Raj</span>!</h2>
       <p>Real-Time Prices • AI Predictions • Government Subsidies • Direct Trading</p>
     </div>
 
@@ -868,6 +1157,117 @@
   </nav>
 
   <script>
+    console.log('🌾 RTCP v7.1 FINAL - Complete Platform with Login/Signup!');
+    
+    // Check if user is logged in
+    let currentUser = localStorage.getItem('rtcpUser');
+    if (!currentUser) {
+      document.getElementById('authOverlay').classList.remove('hidden');
+    } else {
+      const user = JSON.parse(currentUser);
+      document.getElementById('userName').textContent = user.name;
+      document.getElementById('heroName').textContent = user.name.split(' ')[0];
+      document.getElementById('userAvatar').textContent = user.name.charAt(0).toUpperCase();
+      document.getElementById('userPlan').textContent = user.plan || 'FREE';
+    }
+    
+    function switchAuthTab(tab) {
+      document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.auth-form').forEach(f => f.classList.remove('active'));
+      
+      if (tab === 'login') {
+        document.querySelectorAll('.auth-tab')[0].classList.add('active');
+        document.getElementById('loginForm').classList.add('active');
+      } else {
+        document.querySelectorAll('.auth-tab')[1].classList.add('active');
+        document.getElementById('signupForm').classList.add('active');
+      }
+    }
+    
+    function handleLogin(event) {
+      event.preventDefault();
+      const identifier = document.getElementById('loginIdentifier').value;
+      const password = document.getElementById('loginPassword').value;
+      
+      // Simple validation
+      if (!identifier || !password) {
+        alert('❌ Please fill all fields');
+        return;
+      }
+      
+      const user = {
+        name: 'Raj Kapasi',
+        mobile: '9876543210',
+        email: 'raj@example.com',
+        plan: 'FREE'
+      };
+      
+      localStorage.setItem('rtcpUser', JSON.stringify(user));
+      document.getElementById('authOverlay').classList.add('hidden');
+      document.getElementById('userName').textContent = user.name;
+      document.getElementById('heroName').textContent = user.name.split(' ')[0];
+      document.getElementById('userAvatar').textContent = user.name.charAt(0).toUpperCase();
+      document.getElementById('userPlan').textContent = user.plan;
+      
+      alert('✅ Login successful! Welcome to RTCP');
+    }
+    
+    function handleSignup(event) {
+      event.preventDefault();
+      
+      const name = document.getElementById('signupName').value;
+      const mobile = document.getElementById('signupMobile').value;
+      const email = document.getElementById('signupEmail').value;
+      const state = document.getElementById('signupState').value;
+      const password = document.getElementById('signupPassword').value;
+      const confirmPassword = document.getElementById('signupConfirmPassword').value;
+      
+      // Validation
+      if (!name || !mobile || !state || !password || !confirmPassword) {
+        alert('❌ Please fill all required fields');
+        return;
+      }
+      
+      if (mobile.length !== 10 || !/^\d+$/.test(mobile)) {
+        alert('❌ Please enter valid 10-digit mobile number');
+        return;
+      }
+      
+      if (password.length < 6) {
+        alert('❌ Password must be at least 6 characters');
+        return;
+      }
+      
+      if (password !== confirmPassword) {
+        alert('❌ Passwords do not match');
+        return;
+      }
+      
+      const user = {
+        name: name,
+        mobile: mobile,
+        email: email || '',
+        state: state,
+        plan: 'FREE'
+      };
+      
+      localStorage.setItem('rtcpUser', JSON.stringify(user));
+      document.getElementById('authOverlay').classList.add('hidden');
+      document.getElementById('userName').textContent = user.name;
+      document.getElementById('heroName').textContent = user.name.split(' ')[0];
+      document.getElementById('userAvatar').textContent = user.name.charAt(0).toUpperCase();
+      document.getElementById('userPlan').textContent = user.plan;
+      
+      alert('✅ Account created successfully! Enjoy 7-day free trial of Pro features!');
+    }
+    
+    function handleLogout() {
+      if (confirm('Are you sure you want to logout?')) {
+        localStorage.removeItem('rtcpUser');
+        location.reload();
+      }
+    }
+    
     function showTab(tabName) {
       document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
       document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
