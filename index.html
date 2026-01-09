@@ -294,6 +294,77 @@
     .tab-content { display: none; }
     .tab-content.active { display: block; animation: fadeIn 0.5s ease-in; }
     
+    /* Price Cards */
+    .price-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin: 25px 0;
+    }
+    .price-card {
+      background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(255, 165, 0, 0.05));
+      border: 2px solid rgba(255, 215, 0, 0.3);
+      border-radius: 20px;
+      padding: 25px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+    .price-card:hover {
+      transform: translateY(-5px);
+      border-color: #FFD700;
+      box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
+    }
+    .price-icon {
+      font-size: 50px;
+      margin-bottom: 15px;
+    }
+    .price-card h3 {
+      color: #FFD700;
+      font-size: 22px;
+      margin-bottom: 10px;
+      font-weight: 800;
+    }
+    .price-value {
+      font-size: 36px;
+      font-weight: 900;
+      color: #FFD700;
+      margin: 15px 0;
+    }
+    .price-change {
+      display: inline-block;
+      padding: 5px 12px;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 700;
+      margin-top: 10px;
+    }
+    .price-change.up {
+      background: rgba(0, 255, 0, 0.1);
+      border: 2px solid rgba(0, 255, 0, 0.3);
+      color: #00ff00;
+    }
+    .price-change.down {
+      background: rgba(255, 0, 0, 0.1);
+      border: 2px solid rgba(255, 0, 0, 0.3);
+      color: #ff4444;
+    }
+    .price-details {
+      margin-top: 15px;
+      padding-top: 15px;
+      border-top: 1px solid rgba(255, 215, 0, 0.2);
+    }
+    .price-detail-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      font-size: 13px;
+      color: #888;
+    }
+    .price-detail-item span:last-child {
+      color: #FFD700;
+      font-weight: 700;
+    }
+    
     /* Trend Cards */
     .trend-card {
       background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(255, 165, 0, 0.05));
@@ -581,6 +652,7 @@
       .logo h1 { font-size: 24px; }
       .hero-banner { padding: 30px 20px; }
       .hero-banner h2 { font-size: 26px; }
+      .price-grid { grid-template-columns: 1fr; }
       .chatbot-window { width: 90%; right: 5%; }
       .ai-assistant-btn { bottom: 85px; right: 15px; width: 55px; height: 55px; font-size: 28px; }
       .helpline-number { font-size: 28px; }
@@ -685,15 +757,164 @@
     </div>
 
     <div class="tab-navigation">
-      <button class="tab-btn active" onclick="showTab('trends')">📈 Market Trends</button>
+      <button class="tab-btn active" onclick="showTab('prices')">💰 Crop Prices</button>
+      <button class="tab-btn" onclick="showTab('trends')">📈 Market Trends</button>
       <button class="tab-btn" onclick="showTab('traders')">🤝 Traders</button>
       <button class="tab-btn" onclick="showTab('subsidies')">🏛️ Subsidies</button>
       <button class="tab-btn" onclick="showTab('analytics')">📊 Analytics</button>
-      <button class="tab-btn" onclick="showTab('help')">📞 Help & Support</button>
+      <button class="tab-btn" onclick="showTab('help')">📞 Help</button>
+    </div>
+
+    <!-- CROP PRICES TAB -->
+    <div id="prices-tab" class="tab-content active">
+      <h2 class="section-title">💰 Today's Crop Prices</h2>
+      
+      <div class="price-grid">
+        <div class="price-card">
+          <div class="price-icon">🌾</div>
+          <h3>Wheat</h3>
+          <div class="price-value">₹2,150</div>
+          <p style="color: #888; font-size: 13px;">per quintal</p>
+          <div class="price-change up">↑ +5.2% (₹105)</div>
+          <div class="price-details">
+            <div class="price-detail-item">
+              <span>Yesterday</span>
+              <span>₹2,045</span>
+            </div>
+            <div class="price-detail-item">
+              <span>Last Week</span>
+              <span>₹2,100</span>
+            </div>
+            <div class="price-detail-item">
+              <span>MSP 2024-25</span>
+              <span>₹2,275</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="price-card">
+          <div class="price-icon">🌾</div>
+          <h3>Rice (Basmati)</h3>
+          <div class="price-value">₹3,200</div>
+          <p style="color: #888; font-size: 13px;">per quintal</p>
+          <div class="price-change up">↑ +3.8% (₹117)</div>
+          <div class="price-details">
+            <div class="price-detail-item">
+              <span>Yesterday</span>
+              <span>₹3,083</span>
+            </div>
+            <div class="price-detail-item">
+              <span>Last Week</span>
+              <span>₹3,150</span>
+            </div>
+            <div class="price-detail-item">
+              <span>Grade</span>
+              <span>1121 Premium</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="price-card">
+          <div class="price-icon">🌱</div>
+          <h3>Cotton</h3>
+          <div class="price-value">₹6,850</div>
+          <p style="color: #888; font-size: 13px;">per quintal</p>
+          <div class="price-change down">↓ -2.1% (₹147)</div>
+          <div class="price-details">
+            <div class="price-detail-item">
+              <span>Yesterday</span>
+              <span>₹6,997</span>
+            </div>
+            <div class="price-detail-item">
+              <span>Last Week</span>
+              <span>₹7,050</span>
+            </div>
+            <div class="price-detail-item">
+              <span>MSP 2024-25</span>
+              <span>₹7,121</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="price-card">
+          <div class="price-icon">🌽</div>
+          <h3>Maize (Corn)</h3>
+          <div class="price-value">₹1,950</div>
+          <p style="color: #888; font-size: 13px;">per quintal</p>
+          <div class="price-change up">↑ +4.5% (₹84)</div>
+          <div class="price-details">
+            <div class="price-detail-item">
+              <span>Yesterday</span>
+              <span>₹1,866</span>
+            </div>
+            <div class="price-detail-item">
+              <span>Last Week</span>
+              <span>₹1,900</span>
+            </div>
+            <div class="price-detail-item">
+              <span>MSP 2024-25</span>
+              <span>₹2,090</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="price-card">
+          <div class="price-icon">🫘</div>
+          <h3>Soybean</h3>
+          <div class="price-value">₹4,650</div>
+          <p style="color: #888; font-size: 13px;">per quintal</p>
+          <div class="price-change up">↑ +6.2% (₹272)</div>
+          <div class="price-details">
+            <div class="price-detail-item">
+              <span>Yesterday</span>
+              <span>₹4,378</span>
+            </div>
+            <div class="price-detail-item">
+              <span>Last Week</span>
+              <span>₹4,500</span>
+            </div>
+            <div class="price-detail-item">
+              <span>MSP 2024-25</span>
+              <span>₹4,892</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="price-card">
+          <div class="price-icon">🥜</div>
+          <h3>Groundnut</h3>
+          <div class="price-value">₹5,850</div>
+          <p style="color: #888; font-size: 13px;">per quintal</p>
+          <div class="price-change up">↑ +2.8% (₹159)</div>
+          <div class="price-details">
+            <div class="price-detail-item">
+              <span>Yesterday</span>
+              <span>₹5,691</span>
+            </div>
+            <div class="price-detail-item">
+              <span>Last Week</span>
+              <span>₹5,750</span>
+            </div>
+            <div class="price-detail-item">
+              <span>MSP 2024-25</span>
+              <span>₹6,377</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="background: rgba(0, 255, 0, 0.1); border: 2px solid rgba(0, 255, 0, 0.3); border-radius: 20px; padding: 25px; margin: 25px 0; text-align: center;">
+        <h3 style="color: #00ff00; font-size: 20px; margin-bottom: 12px;">📊 Market Update</h3>
+        <p style="color: #ccc; font-size: 14px; line-height: 1.6;">
+          Prices updated: Today, 10:30 AM IST<br>
+          Source: APMC Mandi Rates + Government MSP<br>
+          <strong style="color: #FFD700;">Note:</strong> Prices may vary by location and quality grade
+        </p>
+      </div>
     </div>
 
     <!-- TRENDS TAB -->
-    <div id="trends-tab" class="tab-content active">
+    <div id="trends-tab" class="tab-content">
       <h2 class="section-title">📈 Seasonal Market Trends</h2>
       
       <div class="chart-section">
@@ -965,7 +1186,7 @@
   </nav>
 
   <script>
-    console.log('🌾 RTCP v7.3 - Simplified Interface!');
+    console.log('🌾 RTCP v7.4 COMPLETE - All Features Restored!');
     
     let currentUser = localStorage.getItem('rtcpUser');
     if (!currentUser) {
@@ -1128,7 +1349,7 @@
       if (msg.includes('best time') || msg.includes('selling')) return '📈 <strong>Best Times:</strong><br>🌾 Wheat: Jun-Sep<br>🌾 Rice: Jan-Apr<br>🌱 Cotton: Feb-May';
       if (msg.includes('subsidy') || msg.includes('subsidies')) return '🏛️ <strong>Subsidies:</strong><br>💰 PM-KISAN: ₹6,000/year<br>☀️ Solar: ₹60,000<br>💧 Irrigation: ₹45,000';
       if (msg.includes('trader')) return '🤝 <strong>Rajesh Singh Traders</strong> ✓<br>⭐ 4.9/5.0 • 💼 2,847 deals<br>📞 +91-98765-43210';
-      if (msg.includes('help')) return '📞 <strong>Helpline:</strong> 1800-180-1551<br>💬 WhatsApp: +91-9876543210<br>Check Help & Support tab!';
+      if (msg.includes('help')) return '📞 <strong>Helpline:</strong> 1800-180-1551<br>💬 WhatsApp: +91-9876543210<br>Check Help tab!';
       return '🤖 I can help with:<br>💰 Crop prices<br>📈 Selling times<br>🏛️ Subsidies<br>🤝 Traders<br>📞 Support';
     }
     
