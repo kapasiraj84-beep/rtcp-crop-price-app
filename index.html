@@ -294,7 +294,7 @@
     .tab-content { display: none; }
     .tab-content.active { display: block; animation: fadeIn 0.5s ease-in; }
     
-    /* LIVE Price Cards */
+    /* LIVE Price Cards with Range */
     .price-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -327,6 +327,31 @@
       color: #FFD700;
       margin: 10px 0;
       transition: all 0.3s ease;
+    }
+    .price-range {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 12px 0;
+      padding: 8px 12px;
+      background: rgba(255, 215, 0, 0.05);
+      border-radius: 8px;
+      font-size: 12px;
+    }
+    .price-range-item {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .price-range-label {
+      color: #888;
+      font-size: 10px;
+      text-transform: uppercase;
+    }
+    .price-range-value {
+      color: #FFD700;
+      font-weight: 700;
+      font-size: 13px;
     }
     .change {
       padding: 5px 10px;
@@ -793,7 +818,7 @@
       <button class="tab-btn" onclick="showTab('help')">📞 Help</button>
     </div>
 
-    <!-- LIVE CROP PRICES TAB -->
+    <!-- LIVE CROP PRICES WITH RANGE TAB -->
     <div id="prices-tab" class="tab-content active">
       <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; margin-bottom: 20px;">
         <h2 style="color: #FFD700; font-size: 24px; margin: 0;">Today's Crop Prices</h2>
@@ -808,6 +833,16 @@
           <h3>🌾 Wheat</h3>
           <div class="price" id="wheat-price">₹2,150</div>
           <p style="color: #888;">per quintal</p>
+          <div class="price-range">
+            <div class="price-range-item">
+              <span class="price-range-label">Min</span>
+              <span class="price-range-value" id="wheat-min">₹2,100</span>
+            </div>
+            <div class="price-range-item">
+              <span class="price-range-label">Max</span>
+              <span class="price-range-value" id="wheat-max">₹2,200</span>
+            </div>
+          </div>
           <div class="change up" id="wheat-change">↑ +5.2%</div>
         </div>
 
@@ -815,6 +850,16 @@
           <h3>🌾 Rice</h3>
           <div class="price" id="rice-price">₹3,200</div>
           <p style="color: #888;">per quintal</p>
+          <div class="price-range">
+            <div class="price-range-item">
+              <span class="price-range-label">Min</span>
+              <span class="price-range-value" id="rice-min">₹3,150</span>
+            </div>
+            <div class="price-range-item">
+              <span class="price-range-label">Max</span>
+              <span class="price-range-value" id="rice-max">₹3,280</span>
+            </div>
+          </div>
           <div class="change up" id="rice-change">↑ +3.8%</div>
         </div>
 
@@ -822,6 +867,16 @@
           <h3>🌱 Cotton</h3>
           <div class="price" id="cotton-price">₹6,850</div>
           <p style="color: #888;">per quintal</p>
+          <div class="price-range">
+            <div class="price-range-item">
+              <span class="price-range-label">Min</span>
+              <span class="price-range-value" id="cotton-min">₹6,750</span>
+            </div>
+            <div class="price-range-item">
+              <span class="price-range-label">Max</span>
+              <span class="price-range-value" id="cotton-max">₹6,950</span>
+            </div>
+          </div>
           <div class="change down" id="cotton-change">↓ -2.1%</div>
         </div>
 
@@ -829,6 +884,16 @@
           <h3>🌽 Maize</h3>
           <div class="price" id="maize-price">₹1,950</div>
           <p style="color: #888;">per quintal</p>
+          <div class="price-range">
+            <div class="price-range-item">
+              <span class="price-range-label">Min</span>
+              <span class="price-range-value" id="maize-min">₹1,900</span>
+            </div>
+            <div class="price-range-item">
+              <span class="price-range-label">Max</span>
+              <span class="price-range-value" id="maize-max">₹2,000</span>
+            </div>
+          </div>
           <div class="change up" id="maize-change">↑ +4.5%</div>
         </div>
 
@@ -836,6 +901,16 @@
           <h3>🫘 Soybean</h3>
           <div class="price" id="soybean-price">₹4,650</div>
           <p style="color: #888;">per quintal</p>
+          <div class="price-range">
+            <div class="price-range-item">
+              <span class="price-range-label">Min</span>
+              <span class="price-range-value" id="soybean-min">₹4,550</span>
+            </div>
+            <div class="price-range-item">
+              <span class="price-range-label">Max</span>
+              <span class="price-range-value" id="soybean-max">₹4,750</span>
+            </div>
+          </div>
           <div class="change up" id="soybean-change">↑ +6.2%</div>
         </div>
 
@@ -843,13 +918,23 @@
           <h3>🥜 Groundnut</h3>
           <div class="price" id="groundnut-price">₹5,850</div>
           <p style="color: #888;">per quintal</p>
+          <div class="price-range">
+            <div class="price-range-item">
+              <span class="price-range-label">Min</span>
+              <span class="price-range-value" id="groundnut-min">₹5,750</span>
+            </div>
+            <div class="price-range-item">
+              <span class="price-range-label">Max</span>
+              <span class="price-range-value" id="groundnut-max">₹5,950</span>
+            </div>
+          </div>
           <div class="change up" id="groundnut-change">↑ +2.8%</div>
         </div>
       </div>
 
       <div class="info-box">
         <h3>📊 Market Update</h3>
-        <p>Last updated: <span id="last-update">Just now</span><br>Source: APMC Mandi + Government MSP<br><strong style="color: #FFD700;">Live prices update automatically every 5 seconds</strong></p>
+        <p>Last updated: <span id="last-update">Just now</span><br>Source: APMC Mandi + Government MSP<br><strong style="color: #FFD700;">Live prices fluctuate within fixed market range every 5 seconds</strong></p>
       </div>
     </div>
 
@@ -1105,16 +1190,16 @@
   </nav>
 
   <script>
-    console.log('🌾 RTCP v7.7 - LIVE PRICES Every 5 Seconds!');
+    console.log('🌾 RTCP v7.8 - LIVE PRICES with Min/Max Range!');
     
-    // Crop price data
+    // Crop price data with fixed ranges
     const cropData = {
-      wheat: { base: 2150, current: 2150, change: 5.2 },
-      rice: { base: 3200, current: 3200, change: 3.8 },
-      cotton: { base: 6850, current: 6850, change: -2.1 },
-      maize: { base: 1950, current: 1950, change: 4.5 },
-      soybean: { base: 4650, current: 4650, change: 6.2 },
-      groundnut: { base: 5850, current: 5850, change: 2.8 }
+      wheat: { min: 2100, max: 2200, current: 2150, change: 5.2 },
+      rice: { min: 3150, max: 3280, current: 3200, change: 3.8 },
+      cotton: { min: 6750, max: 6950, current: 6850, change: -2.1 },
+      maize: { min: 1900, max: 2000, current: 1950, change: 4.5 },
+      soybean: { min: 4550, max: 4750, current: 4650, change: 6.2 },
+      groundnut: { min: 5750, max: 5950, current: 5850, change: 2.8 }
     };
     
     // Update prices every 5 seconds
@@ -1122,10 +1207,17 @@
     
     function updatePrices() {
       Object.keys(cropData).forEach(crop => {
-        // Random price change between -2% to +2%
-        const changePercent = (Math.random() * 4) - 2;
-        const priceChange = Math.round(cropData[crop].base * (changePercent / 100));
-        cropData[crop].current = cropData[crop].base + priceChange;
+        const data = cropData[crop];
+        
+        // Generate random price within min-max range
+        const range = data.max - data.min;
+        const newPrice = data.min + Math.floor(Math.random() * range);
+        
+        // Calculate change percentage from middle of range
+        const midPrice = (data.min + data.max) / 2;
+        const changePercent = ((newPrice - midPrice) / midPrice) * 100;
+        
+        cropData[crop].current = newPrice;
         cropData[crop].change = changePercent;
         
         // Update UI
@@ -1138,12 +1230,12 @@
         setTimeout(() => cardEl.classList.remove('pulse'), 500);
         
         // Update price
-        priceEl.textContent = `₹${cropData[crop].current.toLocaleString('en-IN')}`;
+        priceEl.textContent = `₹${newPrice.toLocaleString('en-IN')}`;
         
         // Update change
-        const isUp = cropData[crop].change >= 0;
+        const isUp = changePercent >= 0;
         changeEl.className = `change ${isUp ? 'up' : 'down'}`;
-        changeEl.textContent = `${isUp ? '↑' : '↓'} ${isUp ? '+' : ''}${cropData[crop].change.toFixed(1)}%`;
+        changeEl.textContent = `${isUp ? '↑' : '↓'} ${isUp ? '+' : ''}${changePercent.toFixed(1)}%`;
       });
       
       // Update timestamp
@@ -1307,8 +1399,8 @@
     
     function getAIResponse(msg) {
       msg = msg.toLowerCase();
-      if (msg.includes('wheat') && msg.includes('price')) return `🌾 <strong>Wheat:</strong> ₹${cropData.wheat.current}/quintal (${cropData.wheat.change >= 0 ? '+' : ''}${cropData.wheat.change.toFixed(1)}%)<br><strong>Best Selling:</strong> Jun-Sep<br><strong>Tip:</strong> Avoid Mar-Apr!`;
-      if (msg.includes('rice') && msg.includes('price')) return `🌾 <strong>Rice:</strong> ₹${cropData.rice.current}/quintal (${cropData.rice.change >= 0 ? '+' : ''}${cropData.rice.change.toFixed(1)}%)<br><strong>Best Selling:</strong> Jan-Apr`;
+      if (msg.includes('wheat') && msg.includes('price')) return `🌾 <strong>Wheat:</strong> ₹${cropData.wheat.current}/quintal<br><strong>Range:</strong> ₹${cropData.wheat.min} - ₹${cropData.wheat.max}<br><strong>Best Selling:</strong> Jun-Sep`;
+      if (msg.includes('rice') && msg.includes('price')) return `🌾 <strong>Rice:</strong> ₹${cropData.rice.current}/quintal<br><strong>Range:</strong> ₹${cropData.rice.min} - ₹${cropData.rice.max}<br><strong>Best Selling:</strong> Jan-Apr`;
       if (msg.includes('best time') || msg.includes('selling')) return '📈 <strong>Best Times:</strong><br>🌾 Wheat: Jun-Sep<br>🌾 Rice: Jan-Apr<br>🌱 Cotton: Feb-May';
       if (msg.includes('subsidy') || msg.includes('subsidies')) return '🏛️ <strong>Subsidies:</strong><br>💰 PM-KISAN: ₹6,000/year<br>☀️ Solar: ₹60,000<br>💧 Irrigation: ₹45,000';
       if (msg.includes('trader')) return '🤝 <strong>Rajesh Singh Traders</strong> ✓<br>⭐ 4.9/5.0 • 💼 2,847 deals<br>📞 +91-98765-43210';
