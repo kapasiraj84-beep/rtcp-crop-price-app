@@ -142,9 +142,6 @@
       transform: scale(1.05);
       box-shadow: 0 10px 30px rgba(255, 215, 0, 0.5);
     }
-    .auth-btn:active {
-      transform: scale(0.98);
-    }
     .forgot-password {
       text-align: right;
       margin-top: 10px;
@@ -155,72 +152,6 @@
       font-size: 13px;
       font-weight: 600;
     }
-    .forgot-password a:hover {
-      text-decoration: underline;
-    }
-    .divider {
-      display: flex;
-      align-items: center;
-      margin: 25px 0;
-      color: #666;
-      font-size: 14px;
-    }
-    .divider::before,
-    .divider::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: rgba(255, 215, 0, 0.2);
-    }
-    .divider span {
-      padding: 0 15px;
-    }
-    .social-login {
-      display: flex;
-      gap: 10px;
-      margin-top: 20px;
-    }
-    .social-btn {
-      flex: 1;
-      padding: 12px;
-      border-radius: 15px;
-      border: 2px solid rgba(255, 215, 0, 0.3);
-      background: rgba(255, 215, 0, 0.05);
-      color: #FFD700;
-      font-weight: 700;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      font-size: 14px;
-    }
-    .social-btn:hover {
-      background: rgba(255, 215, 0, 0.1);
-      border-color: #FFD700;
-    }
-    
-    /* Helpline Banner */
-    .helpline-banner {
-      background: linear-gradient(135deg, #FFD700, #FFA500);
-      padding: 12px 20px;
-      text-align: center;
-      position: sticky;
-      top: 0;
-      z-index: 101;
-      box-shadow: 0 5px 20px rgba(255, 215, 0, 0.3);
-    }
-    .helpline-banner a {
-      color: #000;
-      text-decoration: none;
-      font-weight: 900;
-      font-size: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-    }
     
     .header { 
       background: rgba(0, 0, 0, 0.95); 
@@ -230,7 +161,7 @@
       justify-content: space-between; 
       align-items: center; 
       position: sticky; 
-      top: 48px;
+      top: 0;
       z-index: 100;
       backdrop-filter: blur(10px);
       flex-wrap: wrap;
@@ -246,7 +177,6 @@
       -webkit-background-clip: text; 
       -webkit-text-fill-color: transparent;
     }
-    .logo p { font-size: 11px; color: #888; letter-spacing: 1px; }
     .header-right { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
     
     .language-selector {
@@ -263,23 +193,6 @@
     .language-selector:hover {
       background: rgba(255, 215, 0, 0.2);
       transform: scale(1.05);
-    }
-    .language-selector:focus {
-      outline: none;
-      box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
-    }
-    
-    .weather-widget {
-      background: rgba(255, 215, 0, 0.1);
-      border: 2px solid #FFD700;
-      padding: 10px 20px;
-      border-radius: 25px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 14px;
-      font-weight: 600;
-      color: #FFD700;
     }
     
     .user-profile {
@@ -465,6 +378,55 @@
     .chart-section h3 { color: #FFD700; font-size: 20px; margin-bottom: 15px; text-align: center; }
     .chart-section img { width: 100%; border-radius: 12px; }
     
+    /* Helpline Cards */
+    .helpline-card {
+      background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(255, 165, 0, 0.05));
+      border: 2px solid rgba(255, 215, 0, 0.3);
+      border-radius: 20px;
+      padding: 30px;
+      margin: 20px 0;
+      text-align: center;
+    }
+    .helpline-icon {
+      font-size: 60px;
+      margin-bottom: 20px;
+    }
+    .helpline-card h3 {
+      color: #FFD700;
+      font-size: 24px;
+      margin-bottom: 15px;
+      font-weight: 800;
+    }
+    .helpline-number {
+      font-size: 36px;
+      font-weight: 900;
+      color: #FFD700;
+      margin: 20px 0;
+      letter-spacing: 2px;
+    }
+    .helpline-btn {
+      display: inline-block;
+      padding: 15px 40px;
+      background: linear-gradient(135deg, #FFD700, #FFA500);
+      border: none;
+      border-radius: 25px;
+      color: #000;
+      font-size: 18px;
+      font-weight: 800;
+      cursor: pointer;
+      text-decoration: none;
+      margin: 10px;
+      transition: all 0.3s ease;
+    }
+    .helpline-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 30px rgba(255, 215, 0, 0.5);
+    }
+    .helpline-btn.whatsapp {
+      background: #25D366;
+      color: #fff;
+    }
+    
     /* AI Assistant */
     .ai-assistant-btn {
       position: fixed;
@@ -615,13 +577,13 @@
     
     @media (max-width: 768px) {
       .auth-modal { padding: 35px 25px; }
-      .helpline-banner a { font-size: 13px; }
-      .header { top: 42px; padding: 12px 15px; }
+      .header { padding: 12px 15px; }
       .logo h1 { font-size: 24px; }
       .hero-banner { padding: 30px 20px; }
       .hero-banner h2 { font-size: 26px; }
       .chatbot-window { width: 90%; right: 5%; }
       .ai-assistant-btn { bottom: 85px; right: 15px; width: 55px; height: 55px; font-size: 28px; }
+      .helpline-number { font-size: 28px; }
     }
   </style>
 </head>
@@ -648,22 +610,9 @@
           <input type="password" id="loginPassword" placeholder="Enter password" required>
         </div>
         <div class="forgot-password">
-          <a href="#" onclick="alert('Password reset link sent to your email/mobile!'); return false;">Forgot Password?</a>
+          <a href="#" onclick="alert('Password reset link sent!'); return false;">Forgot Password?</a>
         </div>
         <button type="submit" class="auth-btn">Login</button>
-        
-        <div class="divider"><span>OR</span></div>
-        
-        <div class="social-login">
-          <button type="button" class="social-btn" onclick="alert('Google login coming soon!')">
-            <span>🔍</span>
-            <span>Google</span>
-          </button>
-          <button type="button" class="social-btn" onclick="alert('Phone OTP login coming soon!')">
-            <span>📱</span>
-            <span>OTP</span>
-          </button>
-        </div>
       </form>
       
       <!-- Signup Form -->
@@ -696,36 +645,21 @@
         </div>
         <div class="form-group">
           <label>Password *</label>
-          <input type="password" id="signupPassword" placeholder="Create strong password (min 6 characters)" minlength="6" required>
+          <input type="password" id="signupPassword" placeholder="Create password (min 6 characters)" minlength="6" required>
         </div>
         <div class="form-group">
           <label>Confirm Password *</label>
           <input type="password" id="signupConfirmPassword" placeholder="Re-enter password" minlength="6" required>
         </div>
         <button type="submit" class="auth-btn">Create Account</button>
-        
-        <p style="color: #888; font-size: 12px; text-align: center; margin-top: 15px;">
-          By signing up, you agree to our Terms & Privacy Policy
-        </p>
       </form>
     </div>
-  </div>
-
-  <!-- Helpline Banner -->
-  <div class="helpline-banner">
-    <a href="tel:18001801551">
-      <span>📞</span>
-      <span>24/7 Kisan Helpline: 1800-180-1551 (Toll-Free)</span>
-    </a>
   </div>
 
   <header class="header">
     <div class="logo">
       <span class="logo-icon">🌾</span>
-      <div>
-        <h1>RTCP</h1>
-        <p>COMPLETE FARMER PLATFORM</p>
-      </div>
+      <h1>RTCP</h1>
     </div>
     <div class="header-right">
       <select class="language-selector" id="languageSelector" onchange="changeLanguage(this.value)">
@@ -736,10 +670,6 @@
         <option value="mr">🇮🇳 मराठी</option>
         <option value="ta">🇮🇳 தமிழ்</option>
       </select>
-      <div class="weather-widget">
-        <span>🌤️</span>
-        <span>6°C | Ludhiana</span>
-      </div>
       <div class="user-profile" id="userProfile">
         <div class="user-avatar" id="userAvatar">R</div>
         <span class="user-name" id="userName">Raj Kapasi</span>
@@ -754,24 +684,12 @@
       <p>Real-Time Prices • AI Predictions • Government Subsidies • Direct Trading</p>
     </div>
 
-    <div style="background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(255, 165, 0, 0.05)); border: 2px solid #FFD700; border-radius: 18px; padding: 25px; margin: 25px 0; text-align: center;">
-      <h3 style="color: #FFD700; font-size: 20px; margin-bottom: 12px;">📞 Need Help? We're Here 24/7!</h3>
-      <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-top: 15px;">
-        <a href="tel:18001801551" style="background: linear-gradient(135deg, #FFD700, #FFA500); color: #000; padding: 12px 25px; border-radius: 20px; text-decoration: none; font-weight: 900; display: flex; align-items: center; gap: 8px; font-size: 14px;">
-          <span>📞</span><span>1800-180-1551</span>
-        </a>
-        <a href="https://wa.me/919876543210" style="background: #25D366; color: #fff; padding: 12px 25px; border-radius: 20px; text-decoration: none; font-weight: 900; display: flex; align-items: center; gap: 8px; font-size: 14px;">
-          <span>💬</span><span>WhatsApp</span>
-        </a>
-      </div>
-      <p style="color: #888; margin-top: 12px; font-size: 12px;">Available in 22 languages • 6 AM - 10 PM, 7 days</p>
-    </div>
-
     <div class="tab-navigation">
       <button class="tab-btn active" onclick="showTab('trends')">📈 Market Trends</button>
       <button class="tab-btn" onclick="showTab('traders')">🤝 Traders</button>
       <button class="tab-btn" onclick="showTab('subsidies')">🏛️ Subsidies</button>
       <button class="tab-btn" onclick="showTab('analytics')">📊 Analytics</button>
+      <button class="tab-btn" onclick="showTab('help')">📞 Help & Support</button>
     </div>
 
     <!-- TRENDS TAB -->
@@ -808,14 +726,6 @@
             <div class="insight-label">Recovery</div>
             <div class="insight-value">+5-15%</div>
           </div>
-        </div>
-        <div style="background: rgba(0, 255, 0, 0.1); border: 2px solid rgba(0, 255, 0, 0.3); border-radius: 12px; padding: 15px; margin-top: 15px;">
-          <h4 style="color: #00ff00; margin-bottom: 8px; font-size: 15px;">💡 Expert Strategy</h4>
-          <p style="color: #ccc; line-height: 1.5; font-size: 13px;">
-            • Sell 30-40% at harvest (cover costs)<br>
-            • Sell 30-40% in Jun-Sep (recovery)<br>
-            • Hold 20-30% for lean season (Oct-Jan)
-          </p>
         </div>
       </div>
 
@@ -885,7 +795,7 @@
           <div class="trader-avatar-large">RS</div>
           <div>
             <h2>Rajesh Singh Traders <span style="background: #00ff00; color: #000; width: 28px; height: 28px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 16px; margin-left: 8px;">✓</span></h2>
-            <p style="color: #ccc; margin-top: 8px; font-size: 14px;">📍 Ludhiana, Punjab • ⭐ 4.9/5.0 • 🏆 Premium Trader • 📅 Since 2018</p>
+            <p style="color: #ccc; margin-top: 8px; font-size: 14px;">📍 Ludhiana, Punjab • ⭐ 4.9/5.0 • 🏆 Premium Trader</p>
           </div>
         </div>
 
@@ -913,7 +823,7 @@
         </div>
 
         <div style="background: rgba(255, 215, 0, 0.05); border: 2px solid rgba(255, 215, 0, 0.2); border-radius: 15px; padding: 20px; margin: 20px 0;">
-          <h3 style="color: #FFD700; font-size: 18px; margin-bottom: 15px;">🌾 Current Buying Rates (Today)</h3>
+          <h3 style="color: #FFD700; font-size: 18px; margin-bottom: 15px;">🌾 Current Buying Rates</h3>
           <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
             <div>
               <p style="color: #888; font-size: 12px;">Wheat (Grade A)</p>
@@ -930,19 +840,8 @@
           </div>
         </div>
 
-        <div style="background: rgba(0, 255, 0, 0.1); border: 2px solid rgba(0, 255, 0, 0.3); border-radius: 15px; padding: 20px; margin: 20px 0;">
-          <h4 style="color: #00ff00; margin-bottom: 12px; font-size: 18px;">✨ Why Choose This Trader?</h4>
-          <ul style="list-style: none; padding: 0;">
-            <li style="color: #ccc; padding: 8px 0; display: flex; gap: 8px; font-size: 13px;"><span style="color: #00ff00;">✓</span> Instant payment via RTGS/NEFT (24 hrs)</li>
-            <li style="color: #ccc; padding: 8px 0; display: flex; gap: 8px; font-size: 13px;"><span style="color: #00ff00;">✓</span> Free quality testing & grading</li>
-            <li style="color: #ccc; padding: 8px 0; display: flex; gap: 8px; font-size: 13px;"><span style="color: #00ff00;">✓</span> Transparent digital weighing</li>
-            <li style="color: #ccc; padding: 8px 0; display: flex; gap: 8px; font-size: 13px;"><span style="color: #00ff00;">✓</span> Free transport (>10 quintals)</li>
-            <li style="color: #ccc; padding: 8px 0; display: flex; gap: 8px; font-size: 13px;"><span style="color: #00ff00;">✓</span> 7-year track record, zero defaults</li>
-          </ul>
-        </div>
-
         <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-          <button style="flex: 1; min-width: 180px; padding: 15px; background: linear-gradient(135deg, #FFD700, #FFA500); border: none; border-radius: 20px; color: #000; font-size: 15px; font-weight: 800; cursor: pointer;" onclick="alert('Calling +91-98765-43210...')">📞 Call: +91-98765-43210</button>
+          <button style="flex: 1; min-width: 180px; padding: 15px; background: linear-gradient(135deg, #FFD700, #FFA500); border: none; border-radius: 20px; color: #000; font-size: 15px; font-weight: 800; cursor: pointer;" onclick="alert('Calling +91-98765-43210...')">📞 Call Now</button>
           <button style="flex: 1; min-width: 180px; padding: 15px; background: transparent; border: 2px solid #FFD700; border-radius: 20px; color: #FFD700; font-size: 15px; font-weight: 800; cursor: pointer;" onclick="alert('Opening WhatsApp...')">💬 WhatsApp</button>
         </div>
       </div>
@@ -963,11 +862,6 @@
           <h3 style="color: #FFD700; font-size: 20px; margin-bottom: 8px;">PM-KISAN</h3>
           <div style="font-size: 32px; font-weight: 900; color: #FFD700; margin: 12px 0;">₹6,000/year</div>
           <p style="color: #ccc; font-size: 13px; line-height: 1.5; margin-bottom: 12px;">Direct income support to all landholding farmers</p>
-          <ul style="list-style: none; padding: 0; margin: 12px 0;">
-            <li style="color: #888; font-size: 12px; padding: 5px 0; display: flex; gap: 6px;"><span style="color: #00ff00;">✓</span> ₹2,000 × 3 installments</li>
-            <li style="color: #888; font-size: 12px; padding: 5px 0; display: flex; gap: 6px;"><span style="color: #00ff00;">✓</span> Direct bank transfer</li>
-            <li style="color: #888; font-size: 12px; padding: 5px 0; display: flex; gap: 6px;"><span style="color: #00ff00;">✓</span> 9.7 crore beneficiaries</li>
-          </ul>
           <button style="width: 100%; padding: 12px; background: linear-gradient(135deg, #FFD700, #FFA500); border: none; border-radius: 18px; color: #000; font-size: 14px; font-weight: 800; cursor: pointer; margin-top: 12px;" onclick="alert('Check status at pmkisan.gov.in')">Check Status</button>
         </div>
 
@@ -976,11 +870,6 @@
           <h3 style="color: #FFD700; font-size: 20px; margin-bottom: 8px;">Solar Pump</h3>
           <div style="font-size: 32px; font-weight: 900; color: #FFD700; margin: 12px 0;">₹60,000</div>
           <p style="color: #ccc; font-size: 13px; line-height: 1.5; margin-bottom: 12px;">60% subsidy on solar water pumps</p>
-          <ul style="list-style: none; padding: 0; margin: 12px 0;">
-            <li style="color: #888; font-size: 12px; padding: 5px 0; display: flex; gap: 6px;"><span style="color: #00ff00;">✓</span> Reduce electricity costs</li>
-            <li style="color: #888; font-size: 12px; padding: 5px 0; display: flex; gap: 6px;"><span style="color: #00ff00;">✓</span> Eco-friendly farming</li>
-            <li style="color: #888; font-size: 12px; padding: 5px 0; display: flex; gap: 6px;"><span style="color: #00ff00;">✓</span> PM-KUSUM scheme</li>
-          </ul>
           <button style="width: 100%; padding: 12px; background: linear-gradient(135deg, #FFD700, #FFA500); border: none; border-radius: 18px; color: #000; font-size: 14px; font-weight: 800; cursor: pointer; margin-top: 12px;" onclick="alert('Apply via state portal')">Apply Now</button>
         </div>
 
@@ -989,11 +878,6 @@
           <h3 style="color: #FFD700; font-size: 20px; margin-bottom: 8px;">Micro-Irrigation</h3>
           <div style="font-size: 32px; font-weight: 900; color: #FFD700; margin: 12px 0;">₹45,000</div>
           <p style="color: #ccc; font-size: 13px; line-height: 1.5; margin-bottom: 12px;">55% subsidy on drip irrigation</p>
-          <ul style="list-style: none; padding: 0; margin: 12px 0;">
-            <li style="color: #888; font-size: 12px; padding: 5px 0; display: flex; gap: 6px;"><span style="color: #00ff00;">✓</span> Save 40-60% water</li>
-            <li style="color: #888; font-size: 12px; padding: 5px 0; display: flex; gap: 6px;"><span style="color: #00ff00;">✓</span> Increase crop yield</li>
-            <li style="color: #888; font-size: 12px; padding: 5px 0; display: flex; gap: 6px;"><span style="color: #00ff00;">✓</span> Gujarat: 70-90% subsidy</li>
-          </ul>
           <button style="width: 100%; padding: 12px; background: linear-gradient(135deg, #FFD700, #FFA500); border: none; border-radius: 18px; color: #000; font-size: 14px; font-weight: 800; cursor: pointer; margin-top: 12px;" onclick="alert('Contact agriculture office')">Learn More</button>
         </div>
       </div>
@@ -1005,6 +889,44 @@
       <div class="chart-section">
         <h3>Wheat Price Trend - Last 6 Months</h3>
         <img src="https://agents-storage.nyc3.digitaloceanspaces.com/quickchart/34e80754-5200-4852-8044-a956739965c0.png" alt="Analytics">
+      </div>
+    </div>
+
+    <!-- HELP & SUPPORT TAB -->
+    <div id="help-tab" class="tab-content">
+      <h2 class="section-title">📞 Help & Support</h2>
+      
+      <div class="helpline-card">
+        <div class="helpline-icon">📞</div>
+        <h3>24/7 Kisan Call Centre</h3>
+        <div class="helpline-number">1800-180-1551</div>
+        <p style="color: #888; margin: 15px 0; font-size: 14px;">
+          Toll-Free • Available in 22 Languages<br>
+          6 AM - 10 PM, 7 Days a Week
+        </p>
+        <a href="tel:18001801551" class="helpline-btn">📞 Call Now</a>
+      </div>
+
+      <div class="helpline-card">
+        <div class="helpline-icon">💬</div>
+        <h3>WhatsApp Support</h3>
+        <div class="helpline-number">+91-9876543210</div>
+        <p style="color: #888; margin: 15px 0; font-size: 14px;">
+          Quick Responses • Share Photos<br>
+          Get Expert Advice Instantly
+        </p>
+        <a href="https://wa.me/919876543210" class="helpline-btn whatsapp">💬 Chat on WhatsApp</a>
+      </div>
+
+      <div style="background: rgba(0, 255, 0, 0.1); border: 2px solid rgba(0, 255, 0, 0.3); border-radius: 20px; padding: 30px; margin: 25px 0; text-align: center;">
+        <h3 style="color: #00ff00; font-size: 22px; margin-bottom: 15px;">✨ How We Can Help</h3>
+        <ul style="list-style: none; padding: 0; text-align: left; max-width: 600px; margin: 0 auto;">
+          <li style="color: #ccc; padding: 10px 0; display: flex; gap: 10px; font-size: 14px;"><span style="color: #00ff00;">✓</span> Crop price information & market trends</li>
+          <li style="color: #ccc; padding: 10px 0; display: flex; gap: 10px; font-size: 14px;"><span style="color: #00ff00;">✓</span> Government subsidy guidance</li>
+          <li style="color: #ccc; padding: 10px 0; display: flex; gap: 10px; font-size: 14px;"><span style="color: #00ff00;">✓</span> Connect with verified traders</li>
+          <li style="color: #ccc; padding: 10px 0; display: flex; gap: 10px; font-size: 14px;"><span style="color: #00ff00;">✓</span> Weather forecasts & farming tips</li>
+          <li style="color: #ccc; padding: 10px 0; display: flex; gap: 10px; font-size: 14px;"><span style="color: #00ff00;">✓</span> Technical support & account help</li>
+        </ul>
       </div>
     </div>
   </main>
@@ -1043,9 +965,8 @@
   </nav>
 
   <script>
-    console.log('🌾 RTCP v7.2 - Complete Platform with Language Support!');
+    console.log('🌾 RTCP v7.3 - Simplified Interface!');
     
-    // Check if user is logged in
     let currentUser = localStorage.getItem('rtcpUser');
     if (!currentUser) {
       document.getElementById('authOverlay').classList.remove('hidden');
@@ -1156,7 +1077,7 @@
         'mr': 'मराठी',
         'ta': 'தமிழ்'
       };
-      alert(`Language changed to ${languages[lang]}! Full translation coming soon.`);
+      alert(`Language changed to ${languages[lang]}!`);
       localStorage.setItem('rtcpLanguage', lang);
     }
     
@@ -1202,16 +1123,15 @@
     
     function getAIResponse(msg) {
       msg = msg.toLowerCase();
-      if (msg.includes('wheat') && msg.includes('price')) return '🌾 <strong>Wheat:</strong> ₹2,150/quintal (+5.2%)<br><strong>Best Selling:</strong> Jun-Sep<br><strong>Tip:</strong> Avoid Mar-Apr, wait for recovery!';
-      if (msg.includes('rice') && msg.includes('price')) return '🌾 <strong>Rice:</strong> ₹3,200/quintal (+3.8%)<br><strong>Best Selling:</strong> Jan-Apr<br><strong>Tip:</strong> Basmati aging 3-6 months adds 10-15%!';
-      if (msg.includes('best time') || msg.includes('selling')) return '📈 <strong>Best Times:</strong><br>🌾 Wheat: Jun-Sep (+5-15%)<br>🌾 Rice: Jan-Apr (+8-12%)<br>🌱 Cotton: Feb-May (+10-20%)';
-      if (msg.includes('subsidy') || msg.includes('subsidies')) return '🏛️ <strong>Major Subsidies:</strong><br>💰 PM-KISAN: ₹6,000/year<br>☀️ Solar Pump: ₹60,000<br>💧 Micro-Irrigation: ₹45,000<br>Check Subsidies tab!';
-      if (msg.includes('trader')) return '🤝 <strong>Rajesh Singh Traders</strong> ✓<br>⭐ 4.9/5.0 • 💼 2,847 deals<br>💰 ₹125 Cr trade value<br>📞 +91-98765-43210<br>Check Traders tab!';
-      if (msg.includes('help')) return '📞 <strong>Helpline:</strong> 1800-180-1551 (Toll-Free)<br>💬 WhatsApp: +91-9876543210<br>⏰ 6 AM - 10 PM, 7 days<br>🌐 22 languages supported';
-      return '🤖 I can help with:<br>💰 Crop prices & trends<br>📈 Best selling times<br>🏛️ Government subsidies<br>🤝 Verified traders<br>📞 Support: 1800-180-1551';
+      if (msg.includes('wheat') && msg.includes('price')) return '🌾 <strong>Wheat:</strong> ₹2,150/quintal (+5.2%)<br><strong>Best Selling:</strong> Jun-Sep<br><strong>Tip:</strong> Avoid Mar-Apr!';
+      if (msg.includes('rice') && msg.includes('price')) return '🌾 <strong>Rice:</strong> ₹3,200/quintal (+3.8%)<br><strong>Best Selling:</strong> Jan-Apr';
+      if (msg.includes('best time') || msg.includes('selling')) return '📈 <strong>Best Times:</strong><br>🌾 Wheat: Jun-Sep<br>🌾 Rice: Jan-Apr<br>🌱 Cotton: Feb-May';
+      if (msg.includes('subsidy') || msg.includes('subsidies')) return '🏛️ <strong>Subsidies:</strong><br>💰 PM-KISAN: ₹6,000/year<br>☀️ Solar: ₹60,000<br>💧 Irrigation: ₹45,000';
+      if (msg.includes('trader')) return '🤝 <strong>Rajesh Singh Traders</strong> ✓<br>⭐ 4.9/5.0 • 💼 2,847 deals<br>📞 +91-98765-43210';
+      if (msg.includes('help')) return '📞 <strong>Helpline:</strong> 1800-180-1551<br>💬 WhatsApp: +91-9876543210<br>Check Help & Support tab!';
+      return '🤖 I can help with:<br>💰 Crop prices<br>📈 Selling times<br>🏛️ Subsidies<br>🤝 Traders<br>📞 Support';
     }
     
-    // Load saved language
     const savedLang = localStorage.getItem('rtcpLanguage');
     if (savedLang) {
       document.getElementById('languageSelector').value = savedLang;
