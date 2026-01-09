@@ -13,6 +13,123 @@
       padding-bottom: 80px;
       min-height: 100vh;
     }
+    
+    /* Authentication Modal */
+    .auth-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.95);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+      backdrop-filter: blur(10px);
+    }
+    .auth-overlay.hidden {
+      display: none;
+    }
+    .auth-modal {
+      background: linear-gradient(135deg, #1a1a1a, #0a0a0a);
+      border: 3px solid #FFD700;
+      border-radius: 30px;
+      padding: 50px;
+      max-width: 500px;
+      width: 90%;
+      box-shadow: 0 20px 60px rgba(255, 215, 0, 0.4);
+      animation: slideIn 0.5s ease-out;
+    }
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(-50px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .auth-modal h2 {
+      color: #FFD700;
+      font-size: 36px;
+      margin-bottom: 10px;
+      text-align: center;
+      font-weight: 900;
+    }
+    .auth-modal p {
+      color: #888;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .auth-tabs {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 30px;
+    }
+    .auth-tab {
+      flex: 1;
+      padding: 15px;
+      background: rgba(255, 215, 0, 0.1);
+      border: 2px solid rgba(255, 215, 0, 0.3);
+      border-radius: 15px;
+      color: #FFD700;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-align: center;
+    }
+    .auth-tab.active {
+      background: linear-gradient(135deg, #FFD700, #FFA500);
+      color: #000;
+      border-color: #FFD700;
+    }
+    .auth-form {
+      display: none;
+    }
+    .auth-form.active {
+      display: block;
+    }
+    .form-group {
+      margin: 20px 0;
+    }
+    .form-group label {
+      display: block;
+      color: #FFD700;
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .form-group input {
+      width: 100%;
+      padding: 15px;
+      border-radius: 15px;
+      border: 2px solid rgba(255, 215, 0, 0.3);
+      background: rgba(255, 215, 0, 0.05);
+      color: #fff;
+      font-size: 16px;
+      transition: all 0.3s ease;
+    }
+    .form-group input:focus {
+      outline: none;
+      border-color: #FFD700;
+      box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+    }
+    .auth-btn {
+      width: 100%;
+      padding: 18px;
+      background: linear-gradient(135deg, #FFD700, #FFA500);
+      border: none;
+      border-radius: 25px;
+      color: #000;
+      font-size: 18px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: 20px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+    .auth-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 30px rgba(255, 215, 0, 0.5);
+    }
+    
     .header { 
       background: rgba(0, 0, 0, 0.95); 
       border-bottom: 3px solid #FFD700; 
@@ -49,6 +166,52 @@
     }
     .logo p { font-size: 11px; color: #888; letter-spacing: 1px; }
     .header-right { display: flex; gap: 15px; align-items: center; flex-wrap: wrap; }
+    .user-profile {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(255, 215, 0, 0.1);
+      border: 2px solid #FFD700;
+      padding: 8px 20px;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .user-profile:hover {
+      background: rgba(255, 215, 0, 0.2);
+      transform: scale(1.05);
+    }
+    .user-avatar {
+      width: 35px;
+      height: 35px;
+      background: linear-gradient(135deg, #FFD700, #FFA500);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      color: #000;
+    }
+    .user-name {
+      color: #FFD700;
+      font-weight: 700;
+      font-size: 14px;
+    }
+    .logout-btn {
+      background: rgba(255, 0, 0, 0.1);
+      border: 2px solid #ff4444;
+      color: #ff4444;
+      padding: 8px 20px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .logout-btn:hover {
+      background: rgba(255, 0, 0, 0.2);
+      transform: scale(1.05);
+    }
     .language-selector {
       background: rgba(255, 215, 0, 0.1);
       border: 2px solid #FFD700;
@@ -59,10 +222,6 @@
       font-weight: 600;
       cursor: pointer;
       transition: all 0.3s ease;
-    }
-    .language-selector:hover {
-      background: rgba(255, 215, 0, 0.2);
-      transform: scale(1.05);
     }
     .weather-widget, .location-badge {
       background: rgba(255, 215, 0, 0.1);
@@ -87,20 +246,6 @@
       position: relative;
       overflow: hidden;
     }
-    .hero-banner::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-      animation: shine 3s infinite;
-    }
-    @keyframes shine {
-      0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-      100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
-    }
     .hero-banner h2 { 
       color: #000; 
       font-size: 36px; 
@@ -116,14 +261,6 @@
       position: relative;
       z-index: 1;
     }
-    .section-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin: 40px 0 20px;
-      flex-wrap: wrap;
-      gap: 15px;
-    }
     .section-title {
       font-size: 28px;
       color: #FFD700;
@@ -131,6 +268,7 @@
       align-items: center;
       gap: 15px;
       font-weight: 800;
+      margin: 40px 0 20px;
     }
     .section-title::before {
       content: '';
@@ -138,20 +276,6 @@
       height: 35px;
       background: linear-gradient(to bottom, #FFD700, #FFA500);
       border-radius: 5px;
-    }
-    .live-indicator {
-      background: rgba(255, 0, 0, 0.1);
-      color: #ff4444;
-      padding: 5px 15px;
-      border-radius: 20px;
-      font-size: 12px;
-      animation: pulse 2s infinite;
-      font-weight: 700;
-      border: 2px solid #ff4444;
-    }
-    @keyframes pulse { 
-      0%, 100% { opacity: 1; transform: scale(1); } 
-      50% { opacity: 0.7; transform: scale(1.05); } 
     }
     .tab-navigation {
       display: flex;
@@ -188,217 +312,75 @@
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
-    .crops-grid { 
-      display: grid; 
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); 
-      gap: 20px; 
-      margin-bottom: 40px; 
-    }
-    .crop-card { 
-      background: linear-gradient(135deg, rgba(255, 215, 0, 0.08), rgba(255, 165, 0, 0.05)); 
-      border: 2px solid rgba(255, 215, 0, 0.3); 
-      padding: 30px; 
-      border-radius: 25px; 
-      text-align: center; 
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
-      cursor: pointer;
-      position: relative;
-      overflow: hidden;
-    }
-    .crop-card:hover { 
-      transform: translateY(-15px) scale(1.02); 
-      border-color: #FFD700; 
-      box-shadow: 0 20px 50px rgba(255, 215, 0, 0.4); 
-    }
-    .crop-icon { 
-      font-size: 56px; 
-      margin-bottom: 15px;
-      filter: drop-shadow(0 5px 10px rgba(255, 215, 0, 0.3));
-    }
-    .crop-card h4 { font-size: 20px; color: #fff; margin-bottom: 10px; font-weight: 700; }
-    .crop-price { 
-      font-size: 32px; 
-      font-weight: 900; 
-      color: #FFD700; 
-      margin: 10px 0;
-      text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
-    }
-    .price-range { font-size: 12px; color: #888; margin: 5px 0; }
-    .change { 
-      font-size: 15px; 
-      font-weight: 700; 
-      padding: 6px 18px; 
-      border-radius: 20px; 
-      display: inline-block;
-      margin-top: 10px;
-    }
-    .change.up { 
-      background: linear-gradient(135deg, rgba(0, 255, 0, 0.2), rgba(0, 200, 0, 0.1)); 
-      color: #00ff00;
-      border: 2px solid rgba(0, 255, 0, 0.3);
-    }
-    .change.down { 
-      background: linear-gradient(135deg, rgba(255, 0, 0, 0.2), rgba(200, 0, 0, 0.1)); 
-      color: #ff4444;
-      border: 2px solid rgba(255, 0, 0, 0.3);
-    }
-    .subsidy-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 20px;
-      margin: 30px 0;
-    }
-    .subsidy-card {
+    
+    /* Trends Section */
+    .trend-card {
       background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(255, 165, 0, 0.05));
       border: 2px solid rgba(255, 215, 0, 0.3);
       border-radius: 25px;
       padding: 30px;
+      margin: 20px 0;
       transition: all 0.3s ease;
     }
-    .subsidy-card:hover {
-      transform: translateY(-10px);
+    .trend-card:hover {
+      transform: translateY(-5px);
       border-color: #FFD700;
-      box-shadow: 0 20px 50px rgba(255, 215, 0, 0.3);
+      box-shadow: 0 15px 40px rgba(255, 215, 0, 0.3);
     }
-    .subsidy-icon {
-      font-size: 48px;
-      margin-bottom: 15px;
-      display: block;
-    }
-    .subsidy-card h3 {
-      color: #FFD700;
-      font-size: 22px;
-      margin-bottom: 10px;
-      font-weight: 800;
-    }
-    .subsidy-amount {
-      font-size: 36px;
-      font-weight: 900;
-      color: #FFD700;
-      margin: 15px 0;
-      text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
-    }
-    .subsidy-card p {
-      color: #ccc;
-      line-height: 1.6;
-      font-size: 14px;
-      margin-bottom: 15px;
-    }
-    .subsidy-card ul {
-      list-style: none;
-      padding: 0;
-      margin: 15px 0;
-    }
-    .subsidy-card li {
-      color: #888;
-      font-size: 13px;
-      padding: 5px 0;
+    .trend-header {
       display: flex;
+      justify-content: space-between;
       align-items: center;
-      gap: 8px;
-    }
-    .subsidy-card li::before {
-      content: '✓';
-      color: #00ff00;
-      font-weight: 900;
-      font-size: 16px;
-    }
-    .apply-btn {
-      background: linear-gradient(135deg, #FFD700, #FFA500);
-      color: #000;
-      border: none;
-      padding: 12px 30px;
-      border-radius: 25px;
-      font-size: 14px;
-      font-weight: 800;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      width: 100%;
-      margin-top: 15px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-    .apply-btn:hover {
-      transform: scale(1.05);
-      box-shadow: 0 10px 30px rgba(255, 215, 0, 0.5);
-    }
-    .eligibility-checker {
-      background: rgba(255, 215, 0, 0.05);
-      border: 2px solid rgba(255, 215, 0, 0.3);
-      border-radius: 25px;
-      padding: 40px;
-      margin: 30px 0;
-    }
-    .eligibility-checker h3 {
-      color: #FFD700;
-      font-size: 28px;
       margin-bottom: 20px;
-      text-align: center;
+      flex-wrap: wrap;
+      gap: 15px;
     }
-    .form-group {
+    .trend-header h3 {
+      color: #FFD700;
+      font-size: 24px;
+      font-weight: 800;
+    }
+    .trend-badge {
+      background: rgba(0, 255, 0, 0.1);
+      border: 2px solid rgba(0, 255, 0, 0.3);
+      color: #00ff00;
+      padding: 8px 20px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 700;
+    }
+    .trend-badge.sell {
+      background: rgba(255, 165, 0, 0.1);
+      border-color: rgba(255, 165, 0, 0.3);
+      color: #FFA500;
+    }
+    .trend-badge.hold {
+      background: rgba(255, 215, 0, 0.1);
+      border-color: rgba(255, 215, 0, 0.3);
+      color: #FFD700;
+    }
+    .trend-insights {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
       margin: 20px 0;
     }
-    .form-group label {
-      display: block;
-      color: #FFD700;
-      font-size: 16px;
-      font-weight: 600;
-      margin-bottom: 10px;
-    }
-    .form-group input, .form-group select {
-      width: 100%;
-      padding: 15px;
-      border-radius: 15px;
-      border: 2px solid rgba(255, 215, 0, 0.3);
+    .insight-box {
       background: rgba(255, 215, 0, 0.05);
-      color: #fff;
-      font-size: 16px;
-      transition: all 0.3s ease;
+      border: 1px solid rgba(255, 215, 0, 0.2);
+      padding: 20px;
+      border-radius: 15px;
+      text-align: center;
     }
-    .form-group input:focus, .form-group select:focus {
-      outline: none;
-      border-color: #FFD700;
-      box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+    .insight-label {
+      color: #888;
+      font-size: 12px;
+      margin-bottom: 8px;
     }
-    .check-btn {
-      background: linear-gradient(135deg, #FFD700, #FFA500);
-      color: #000;
-      border: none;
-      padding: 18px 50px;
-      border-radius: 30px;
-      font-size: 18px;
-      font-weight: 800;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      width: 100%;
-      margin-top: 20px;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-    }
-    .check-btn:hover {
-      transform: scale(1.05);
-      box-shadow: 0 15px 40px rgba(255, 215, 0, 0.5);
-    }
-    .result-box {
-      background: linear-gradient(135deg, rgba(0, 255, 0, 0.1), rgba(0, 200, 0, 0.05));
-      border: 2px solid rgba(0, 255, 0, 0.3);
-      border-radius: 20px;
-      padding: 30px;
-      margin-top: 30px;
-      display: none;
-    }
-    .result-box.show {
-      display: block;
-      animation: slideIn 0.5s ease-out;
-    }
-    @keyframes slideIn {
-      from { opacity: 0; transform: translateY(-20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .result-box h4 {
-      color: #00ff00;
+    .insight-value {
+      color: #FFD700;
       font-size: 24px;
-      margin-bottom: 15px;
+      font-weight: 900;
     }
     .chart-section {
       background: rgba(255, 215, 0, 0.05);
@@ -419,170 +401,164 @@
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     }
     
-    /* AI Assistant Chatbot */
-    .ai-assistant-btn {
-      position: fixed;
-      bottom: 100px;
-      right: 30px;
-      width: 70px;
-      height: 70px;
+    /* Trader Profile */
+    .trader-profile {
+      background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(255, 165, 0, 0.05));
+      border: 3px solid #FFD700;
+      border-radius: 30px;
+      padding: 40px;
+      margin: 30px 0;
+      box-shadow: 0 20px 50px rgba(255, 215, 0, 0.3);
+    }
+    .trader-header {
+      display: flex;
+      gap: 30px;
+      align-items: center;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+    }
+    .trader-avatar-large {
+      width: 120px;
+      height: 120px;
       background: linear-gradient(135deg, #FFD700, #FFA500);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 36px;
-      cursor: pointer;
-      box-shadow: 0 10px 40px rgba(255, 215, 0, 0.5);
-      z-index: 999;
-      transition: all 0.3s ease;
-      animation: bounce 2s infinite;
-    }
-    @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-    }
-    .ai-assistant-btn:hover {
-      transform: scale(1.1);
-      box-shadow: 0 15px 50px rgba(255, 215, 0, 0.7);
-    }
-    .chatbot-window {
-      position: fixed;
-      bottom: 100px;
-      right: 30px;
-      width: 400px;
-      height: 600px;
-      background: rgba(0, 0, 0, 0.95);
-      border: 3px solid #FFD700;
-      border-radius: 25px;
-      display: none;
-      flex-direction: column;
-      z-index: 1000;
-      box-shadow: 0 20px 60px rgba(255, 215, 0, 0.4);
-      backdrop-filter: blur(10px);
-    }
-    .chatbot-window.show {
-      display: flex;
-      animation: slideUp 0.3s ease-out;
-    }
-    @keyframes slideUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .chatbot-header {
-      background: linear-gradient(135deg, #FFD700, #FFA500);
-      padding: 20px;
-      border-radius: 22px 22px 0 0;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .chatbot-header h3 {
-      color: #000;
-      font-size: 20px;
+      font-size: 48px;
       font-weight: 900;
+      color: #000;
+      box-shadow: 0 10px 30px rgba(255, 215, 0, 0.5);
+    }
+    .trader-info h2 {
+      color: #FFD700;
+      font-size: 32px;
+      margin-bottom: 10px;
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 15px;
     }
-    .close-chat {
-      background: rgba(0, 0, 0, 0.2);
-      border: none;
+    .verified-badge-large {
+      background: #00ff00;
       color: #000;
-      font-size: 24px;
       width: 35px;
       height: 35px;
       border-radius: 50%;
-      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
       font-weight: 900;
+    }
+    .trader-meta {
+      display: flex;
+      gap: 30px;
+      flex-wrap: wrap;
+      margin-top: 15px;
+    }
+    .meta-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #ccc;
+      font-size: 16px;
+    }
+    .trader-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin: 30px 0;
+    }
+    .stat-card {
+      background: rgba(255, 215, 0, 0.05);
+      border: 2px solid rgba(255, 215, 0, 0.2);
+      padding: 25px;
+      border-radius: 20px;
+      text-align: center;
       transition: all 0.3s ease;
     }
-    .close-chat:hover {
-      background: rgba(0, 0, 0, 0.4);
-      transform: rotate(90deg);
+    .stat-card:hover {
+      transform: translateY(-5px);
+      border-color: #FFD700;
     }
-    .chatbot-messages {
-      flex: 1;
-      padding: 20px;
-      overflow-y: auto;
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
+    .stat-icon {
+      font-size: 40px;
+      margin-bottom: 15px;
     }
-    .message {
-      padding: 15px;
-      border-radius: 15px;
-      max-width: 80%;
-      animation: messageIn 0.3s ease-out;
+    .stat-value {
+      color: #FFD700;
+      font-size: 32px;
+      font-weight: 900;
+      margin-bottom: 8px;
     }
-    @keyframes messageIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .message.bot {
-      background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 165, 0, 0.1));
-      border: 2px solid rgba(255, 215, 0, 0.3);
-      align-self: flex-start;
-      color: #fff;
-    }
-    .message.user {
-      background: linear-gradient(135deg, rgba(0, 150, 255, 0.2), rgba(0, 100, 200, 0.1));
-      border: 2px solid rgba(0, 150, 255, 0.3);
-      align-self: flex-end;
-      color: #fff;
-    }
-    .chatbot-input {
-      padding: 20px;
-      border-top: 2px solid rgba(255, 215, 0, 0.3);
-      display: flex;
-      gap: 10px;
-    }
-    .chatbot-input input {
-      flex: 1;
-      padding: 15px;
-      border-radius: 25px;
-      border: 2px solid rgba(255, 215, 0, 0.3);
-      background: rgba(255, 215, 0, 0.05);
-      color: #fff;
+    .stat-label {
+      color: #888;
       font-size: 14px;
     }
-    .chatbot-input input:focus {
-      outline: none;
-      border-color: #FFD700;
-    }
-    .send-btn {
-      background: linear-gradient(135deg, #FFD700, #FFA500);
-      border: none;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      font-size: 20px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-    .send-btn:hover {
-      transform: scale(1.1);
-      box-shadow: 0 5px 20px rgba(255, 215, 0, 0.5);
-    }
-    .quick-actions {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-top: 10px;
-    }
-    .quick-btn {
-      background: rgba(255, 215, 0, 0.1);
-      border: 2px solid rgba(255, 215, 0, 0.3);
-      color: #FFD700;
-      padding: 8px 15px;
+    .trader-details {
+      background: rgba(255, 215, 0, 0.05);
+      border: 2px solid rgba(255, 215, 0, 0.2);
       border-radius: 20px;
-      font-size: 12px;
+      padding: 30px;
+      margin: 20px 0;
+    }
+    .trader-details h3 {
+      color: #FFD700;
+      font-size: 22px;
+      margin-bottom: 20px;
+    }
+    .detail-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+    .detail-item {
+      padding: 15px 0;
+      border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+    }
+    .detail-label {
+      color: #888;
+      font-size: 14px;
+      margin-bottom: 5px;
+    }
+    .detail-value {
+      color: #fff;
+      font-size: 16px;
+      font-weight: 600;
+    }
+    .contact-buttons {
+      display: flex;
+      gap: 15px;
+      margin-top: 30px;
+      flex-wrap: wrap;
+    }
+    .contact-btn {
+      flex: 1;
+      min-width: 200px;
+      padding: 18px 30px;
+      border-radius: 25px;
+      font-size: 16px;
+      font-weight: 800;
       cursor: pointer;
       transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
     }
-    .quick-btn:hover {
-      background: rgba(255, 215, 0, 0.2);
-      border-color: #FFD700;
+    .contact-btn.primary {
+      background: linear-gradient(135deg, #FFD700, #FFA500);
+      color: #000;
+      border: none;
+    }
+    .contact-btn.secondary {
+      background: transparent;
+      border: 2px solid #FFD700;
+      color: #FFD700;
+    }
+    .contact-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 30px rgba(255, 215, 0, 0.4);
     }
     
     .bottom-nav { 
@@ -624,294 +600,406 @@
       .logo h1 { font-size: 26px; }
       .hero-banner { padding: 35px 25px; }
       .hero-banner h2 { font-size: 28px; }
-      .crops-grid { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 15px; }
-      .subsidy-grid { grid-template-columns: 1fr; }
       .section-title { font-size: 22px; }
-      .chatbot-window { width: 90%; right: 5%; }
-      .ai-assistant-btn { bottom: 90px; right: 20px; width: 60px; height: 60px; font-size: 30px; }
+      .trader-header { flex-direction: column; text-align: center; }
+      .trader-avatar-large { margin: 0 auto; }
+      .contact-buttons { flex-direction: column; }
+      .contact-btn { min-width: 100%; }
     }
   </style>
 </head>
 <body>
+  <!-- Authentication Overlay -->
+  <div class="auth-overlay" id="authOverlay">
+    <div class="auth-modal">
+      <h2>🌾 Welcome to RTCP</h2>
+      <p>India's #1 Farmer Platform</p>
+      
+      <div class="auth-tabs">
+        <div class="auth-tab active" onclick="switchAuthTab('login')">Login</div>
+        <div class="auth-tab" onclick="switchAuthTab('signup')">Sign Up</div>
+      </div>
+      
+      <!-- Login Form -->
+      <form class="auth-form active" id="loginForm" onsubmit="handleLogin(event)">
+        <div class="form-group">
+          <label>Mobile Number / Email</label>
+          <input type="text" placeholder="Enter mobile or email" required>
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" placeholder="Enter password" required>
+        </div>
+        <button type="submit" class="auth-btn">Login</button>
+      </form>
+      
+      <!-- Signup Form -->
+      <form class="auth-form" id="signupForm" onsubmit="handleSignup(event)">
+        <div class="form-group">
+          <label>Full Name</label>
+          <input type="text" id="signupName" placeholder="Enter your name" required>
+        </div>
+        <div class="form-group">
+          <label>Mobile Number</label>
+          <input type="tel" placeholder="Enter 10-digit mobile" maxlength="10" required>
+        </div>
+        <div class="form-group">
+          <label>Email (Optional)</label>
+          <input type="email" placeholder="Enter email">
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" placeholder="Create password" required>
+        </div>
+        <button type="submit" class="auth-btn">Create Account</button>
+      </form>
+    </div>
+  </div>
+
   <header class="header">
     <div class="logo">
       <span class="logo-icon">🌾</span>
       <div>
-        <h1 id="app-title">RTCP</h1>
-        <p id="app-subtitle">COMPLETE FARMER PLATFORM</p>
+        <h1>RTCP</h1>
+        <p>COMPLETE FARMER PLATFORM</p>
       </div>
     </div>
     <div class="header-right">
-      <select class="language-selector" id="language" onchange="changeLanguage()">
+      <select class="language-selector">
         <option value="en">🌐 English</option>
         <option value="hi">🇮🇳 हिंदी</option>
         <option value="gu">🇮🇳 ગુજરાતી</option>
-        <option value="pa">🇮🇳 ਪੰਜਾਬੀ</option>
-        <option value="mr">🇮🇳 मराठी</option>
-        <option value="ta">🇮🇳 தமிழ்</option>
       </select>
       <div class="weather-widget">
         <span>🌤️</span>
-        <span id="weather-info">6°C | Ludhiana</span>
+        <span>6°C | Ludhiana</span>
       </div>
-      <div class="location-badge" id="location-badge">📍 Punjab</div>
+      <div class="user-profile" id="userProfile">
+        <div class="user-avatar" id="userAvatar">R</div>
+        <span class="user-name" id="userName">Raj Kapasi</span>
+      </div>
+      <button class="logout-btn" onclick="handleLogout()">Logout</button>
     </div>
   </header>
 
   <main class="container">
     <div class="hero-banner">
-      <h2 id="hero-title">🚀 India's #1 Farmer Platform</h2>
-      <p id="hero-subtitle">Real-Time Prices • AI Predictions • Government Subsidies • Direct Trading</p>
+      <h2>🚀 Welcome Back, <span id="heroName">Raj</span>!</h2>
+      <p>Real-Time Prices • AI Predictions • Government Subsidies • Direct Trading</p>
     </div>
 
     <div class="tab-navigation">
-      <button class="tab-btn active" onclick="showTab('prices')" id="tab-prices">💰 Live Prices</button>
-      <button class="tab-btn" onclick="showTab('subsidies')" id="tab-subsidies">🏛️ Govt Subsidies</button>
-      <button class="tab-btn" onclick="showTab('analytics')" id="tab-analytics">📊 Analytics</button>
-      <button class="tab-btn" onclick="showTab('traders')" id="tab-traders">🤝 Traders</button>
+      <button class="tab-btn active" onclick="showTab('trends')">📈 Market Trends</button>
+      <button class="tab-btn" onclick="showTab('traders')">🤝 Traders</button>
+      <button class="tab-btn" onclick="showTab('subsidies')">🏛️ Subsidies</button>
+      <button class="tab-btn" onclick="showTab('analytics')">📊 Analytics</button>
     </div>
 
-    <!-- PRICES TAB -->
-    <div id="prices-tab" class="tab-content active">
-      <div class="section-header">
-        <h2 class="section-title" id="prices-title">💰 Live Market Prices</h2>
-        <span class="live-indicator">🔴 LIVE UPDATES</span>
+    <!-- TRENDS TAB -->
+    <div id="trends-tab" class="tab-content active">
+      <h2 class="section-title">📈 Seasonal Market Trends & Best Selling Times</h2>
+      
+      <div class="chart-section">
+        <h3>Wheat Seasonal Price Pattern (12 Months)</h3>
+        <img src="https://agents-storage.nyc3.digitaloceanspaces.com/quickchart/34818539-84bb-4c7b-8bc9-7e7bce6697ab.png" alt="Wheat Seasonal Trend">
+      </div>
+      
+      <div class="trend-card">
+        <div class="trend-header">
+          <h3>🌾 Wheat Trading Strategy</h3>
+          <span class="trend-badge sell">BEST TIME TO SELL: Jun-Sep</span>
+        </div>
+        <p style="color: #ccc; line-height: 1.8; margin-bottom: 20px;">
+          Wheat prices follow a predictable seasonal pattern. Harvest occurs in March-May, causing prices to dip to MSP levels. 
+          The optimal selling window is June-September when prices recover by 5-15% from harvest lows.
+        </p>
+        <div class="trend-insights">
+          <div class="insight-box">
+            <div class="insight-label">Harvest Period</div>
+            <div class="insight-value">Mar-May</div>
+          </div>
+          <div class="insight-box">
+            <div class="insight-label">Price Dip</div>
+            <div class="insight-value">-10%</div>
+          </div>
+          <div class="insight-box">
+            <div class="insight-label">Best Selling</div>
+            <div class="insight-value">Jun-Sep</div>
+          </div>
+          <div class="insight-box">
+            <div class="insight-label">Price Recovery</div>
+            <div class="insight-value">+5-15%</div>
+          </div>
+          <div class="insight-box">
+            <div class="insight-label">Peak Price</div>
+            <div class="insight-value">Jul</div>
+          </div>
+          <div class="insight-box">
+            <div class="insight-label">Lean Season</div>
+            <div class="insight-value">Oct-Jan</div>
+          </div>
+        </div>
+        <div style="background: rgba(0, 255, 0, 0.1); border: 2px solid rgba(0, 255, 0, 0.3); border-radius: 15px; padding: 20px; margin-top: 20px;">
+          <h4 style="color: #00ff00; margin-bottom: 10px;">💡 Expert Recommendation</h4>
+          <p style="color: #ccc; line-height: 1.6;">
+            <strong>Staggered Selling Strategy:</strong><br>
+            • Sell 30-40% at harvest to cover costs<br>
+            • Sell 30-40% in Jun-Sep (post-harvest firming)<br>
+            • Hold 20-30% for lean season (Oct-Jan) if fundamentals are strong<br>
+            • Avoid distress selling in March-April
+          </p>
+        </div>
       </div>
 
-      <div class="crops-grid">
-        <div class="crop-card">
-          <div class="crop-icon">🌾</div>
-          <h4>Wheat</h4>
-          <p class="crop-price" data-base="2150">₹2,150</p>
-          <p class="price-range">₹2,100 - ₹2,200</p>
-          <span class="change up">↑ +5.2%</span>
+      <div class="trend-card">
+        <div class="trend-header">
+          <h3>🌾 Rice Trading Strategy</h3>
+          <span class="trend-badge sell">BEST TIME TO SELL: Jan-Apr</span>
         </div>
-        <div class="crop-card">
-          <div class="crop-icon">🌾</div>
-          <h4>Rice</h4>
-          <p class="crop-price" data-base="3200">₹3,200</p>
-          <p class="price-range">₹3,150 - ₹3,250</p>
-          <span class="change up">↑ +3.8%</span>
+        <p style="color: #ccc; line-height: 1.8; margin-bottom: 20px;">
+          Rice has both Kharif (main) and Rabi crops. Kharif harvest (Oct-Dec) causes price drops to MSP. 
+          Prices firm up January-June as arrivals decrease and procurement concludes.
+        </p>
+        <div class="trend-insights">
+          <div class="insight-box">
+            <div class="insight-label">Kharif Harvest</div>
+            <div class="insight-value">Oct-Dec</div>
+          </div>
+          <div class="insight-box">
+            <div class="insight-label">Price Dip</div>
+            <div class="insight-value">-8%</div>
+          </div>
+          <div class="insight-box">
+            <div class="insight-label">Best Selling</div>
+            <div class="insight-value">Jan-Apr</div>
+          </div>
+          <div class="insight-box">
+            <div class="insight-label">Price Recovery</div>
+            <div class="insight-value">+8-12%</div>
+          </div>
+          <div class="insight-box">
+            <div class="insight-label">Basmati Aging</div>
+            <div class="insight-value">3-6 Mo</div>
+          </div>
+          <div class="insight-box">
+            <div class="insight-label">Export Demand</div>
+            <div class="insight-value">Q2-Q3</div>
+          </div>
         </div>
-        <div class="crop-card">
-          <div class="crop-icon">🌱</div>
-          <h4>Cotton</h4>
-          <p class="crop-price" data-base="6800">₹6,800</p>
-          <p class="price-range">₹6,700 - ₹6,900</p>
-          <span class="change down">↓ -2.1%</span>
+      </div>
+
+      <div class="trend-card">
+        <div class="trend-header">
+          <h3>🌱 Cotton Trading Strategy</h3>
+          <span class="trend-badge sell">BEST TIME TO SELL: Feb-May</span>
         </div>
-        <div class="crop-card">
-          <div class="crop-icon">🎋</div>
-          <h4>Sugarcane</h4>
-          <p class="crop-price" data-base="350">₹350</p>
-          <p class="price-range">₹340 - ₹360</p>
-          <span class="change up">↑ +1.5%</span>
+        <p style="color: #ccc; line-height: 1.8; margin-bottom: 20px;">
+          Cotton shows clear seasonal cycles. Harvest (Oct-Jan) brings seasonal lows. 
+          Prices recover February-May as arrivals decrease and mills assess export orders.
+        </p>
+        <div class="trend-insights">
+          <div class="insight-box">
+            <div class="insight-label">Harvest Period</div>
+            <div class="insight-value">Oct-Jan</div>
+          </div>
+          <div class="insight-box">
+            <div class="insight-label">Price Dip</div>
+            <div class="insight-value">-15%</div>
+          </div>
+          <div class="insight-box">
+            <div class="insight-label">Best Selling</div>
+            <div class="insight-value">Feb-May</div>
+          </div>
+          <div class="insight-box">
+            <div class="insight-label">Price Recovery</div>
+            <div class="insight-value">+10-20%</div>
+          </div>
+          <div class="insight-box">
+            <div class="insight-label">Off-Season</div>
+            <div class="insight-value">Jun-Sep</div>
+          </div>
+          <div class="insight-box">
+            <div class="insight-label">Rally Potential</div>
+            <div class="insight-value">+25%</div>
+          </div>
         </div>
-        <div class="crop-card">
-          <div class="crop-icon">🥔</div>
-          <h4>Potato</h4>
-          <p class="crop-price" data-base="25">₹25</p>
-          <p class="price-range">₹22 - ₹28</p>
-          <span class="change up">↑ +8.3%</span>
+      </div>
+    </div>
+
+    <!-- TRADERS TAB -->
+    <div id="traders-tab" class="tab-content">
+      <h2 class="section-title">🤝 Featured Verified Trader</h2>
+      
+      <div class="trader-profile">
+        <div class="trader-header">
+          <div class="trader-avatar-large">RS</div>
+          <div class="trader-info">
+            <h2>
+              Rajesh Singh Traders
+              <span class="verified-badge-large">✓</span>
+            </h2>
+            <div class="trader-meta">
+              <div class="meta-item">
+                <span>📍</span>
+                <span>Ludhiana, Punjab</span>
+              </div>
+              <div class="meta-item">
+                <span>⭐</span>
+                <span>4.9/5.0 Rating</span>
+              </div>
+              <div class="meta-item">
+                <span>🏆</span>
+                <span>Premium Trader</span>
+              </div>
+              <div class="meta-item">
+                <span>📅</span>
+                <span>Member Since 2018</span>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="crop-card">
-          <div class="crop-icon">🍅</div>
-          <h4>Tomato</h4>
-          <p class="crop-price" data-base="35">₹35</p>
-          <p class="price-range">₹30 - ₹40</p>
-          <span class="change down">↓ -5.4%</span>
+
+        <div class="trader-stats">
+          <div class="stat-card">
+            <div class="stat-icon">💼</div>
+            <div class="stat-value">2,847</div>
+            <div class="stat-label">Total Deals</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">💰</div>
+            <div class="stat-value">₹125 Cr</div>
+            <div class="stat-label">Total Trade Value</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">👨‍🌾</div>
+            <div class="stat-value">1,234</div>
+            <div class="stat-label">Farmers Served</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">⚡</div>
+            <div class="stat-value">24 Hrs</div>
+            <div class="stat-label">Avg Payment Time</div>
+          </div>
+        </div>
+
+        <div class="trader-details">
+          <h3>📋 Business Details</h3>
+          <div class="detail-grid">
+            <div class="detail-item">
+              <div class="detail-label">Company Name</div>
+              <div class="detail-value">Rajesh Singh Traders Pvt Ltd</div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-label">GST Number</div>
+              <div class="detail-value">03AABCU9603R1ZM</div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-label">License Number</div>
+              <div class="detail-value">APMC/PB/2018/1234</div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-label">Specialization</div>
+              <div class="detail-value">Wheat, Rice, Cotton</div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-label">Storage Capacity</div>
+              <div class="detail-value">5,000 MT</div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-label">Payment Terms</div>
+              <div class="detail-value">Instant to 7 Days</div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-label">Operating Hours</div>
+              <div class="detail-value">6 AM - 8 PM (Mon-Sat)</div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-label">Languages</div>
+              <div class="detail-value">Hindi, Punjabi, English</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="trader-details">
+          <h3>🌾 Current Buying Rates (Updated Today)</h3>
+          <div class="detail-grid">
+            <div class="detail-item">
+              <div class="detail-label">Wheat (Grade A)</div>
+              <div class="detail-value" style="color: #FFD700; font-size: 20px;">₹2,180/quintal</div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-label">Rice (Basmati 1121)</div>
+              <div class="detail-value" style="color: #FFD700; font-size: 20px;">₹3,250/quintal</div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-label">Cotton (Medium Staple)</div>
+              <div class="detail-value" style="color: #FFD700; font-size: 20px;">₹6,850/quintal</div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-label">Sugarcane</div>
+              <div class="detail-value" style="color: #FFD700; font-size: 20px;">₹355/quintal</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="background: rgba(0, 255, 0, 0.1); border: 2px solid rgba(0, 255, 0, 0.3); border-radius: 15px; padding: 25px; margin: 20px 0;">
+          <h4 style="color: #00ff00; margin-bottom: 15px; font-size: 20px;">✨ Why Choose Rajesh Singh Traders?</h4>
+          <ul style="list-style: none; padding: 0;">
+            <li style="color: #ccc; padding: 10px 0; border-bottom: 1px solid rgba(255,215,0,0.2); display: flex; align-items: center; gap: 10px;">
+              <span style="color: #00ff00; font-size: 20px;">✓</span>
+              <span>Instant payment via RTGS/NEFT within 24 hours</span>
+            </li>
+            <li style="color: #ccc; padding: 10px 0; border-bottom: 1px solid rgba(255,215,0,0.2); display: flex; align-items: center; gap: 10px;">
+              <span style="color: #00ff00; font-size: 20px;">✓</span>
+              <span>Free quality testing and grading at our facility</span>
+            </li>
+            <li style="color: #ccc; padding: 10px 0; border-bottom: 1px solid rgba(255,215,0,0.2); display: flex; align-items: center; gap: 10px;">
+              <span style="color: #00ff00; font-size: 20px;">✓</span>
+              <span>Transparent weighing with digital scales</span>
+            </li>
+            <li style="color: #ccc; padding: 10px 0; border-bottom: 1px solid rgba(255,215,0,0.2); display: flex; align-items: center; gap: 10px;">
+              <span style="color: #00ff00; font-size: 20px;">✓</span>
+              <span>Free transportation for orders above 10 quintals</span>
+            </li>
+            <li style="color: #ccc; padding: 10px 0; display: flex; align-items: center; gap: 10px;">
+              <span style="color: #00ff00; font-size: 20px;">✓</span>
+              <span>7-year track record with zero payment defaults</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="contact-buttons">
+          <button class="contact-btn primary" onclick="alert('Calling +91-98765-43210...')">
+            <span>📞</span>
+            <span>Call Now: +91-98765-43210</span>
+          </button>
+          <button class="contact-btn secondary" onclick="alert('Opening WhatsApp...')">
+            <span>💬</span>
+            <span>WhatsApp</span>
+          </button>
+          <button class="contact-btn secondary" onclick="alert('Sending inquiry...')">
+            <span>📧</span>
+            <span>Send Inquiry</span>
+          </button>
         </div>
       </div>
     </div>
 
     <!-- SUBSIDIES TAB -->
     <div id="subsidies-tab" class="tab-content">
-      <div class="section-header">
-        <h2 class="section-title" id="subsidies-title">🏛️ Government Subsidies</h2>
-      </div>
-
-      <div class="chart-section">
-        <h3>Available Subsidies for Farmers</h3>
-        <img src="https://agents-storage.nyc3.digitaloceanspaces.com/quickchart/b8777b74-3a31-431e-955d-ad7e2c242a69.png" alt="Subsidies Chart">
-      </div>
-
-      <div class="subsidy-grid">
-        <div class="subsidy-card">
-          <span class="subsidy-icon">💰</span>
-          <h3>PM-KISAN</h3>
-          <div class="subsidy-amount">₹6,000/year</div>
-          <p>Direct income support to all landholding farmer families</p>
-          <ul>
-            <li>₹2,000 per installment (3x/year)</li>
-            <li>Direct bank transfer (DBT)</li>
-            <li>Aadhaar mandatory</li>
-            <li>9.7 crore farmers benefited</li>
-          </ul>
-          <button class="apply-btn" onclick="alert('Redirecting to PM-KISAN portal...')">Check Status</button>
-        </div>
-
-        <div class="subsidy-card">
-          <span class="subsidy-icon">☀️</span>
-          <h3>PM-KUSUM Solar Pump</h3>
-          <div class="subsidy-amount">Up to ₹60,000</div>
-          <p>60% subsidy on solar water pumps for irrigation</p>
-          <ul>
-            <li>Reduce electricity costs</li>
-            <li>Eco-friendly farming</li>
-            <li>3-5 HP pump subsidy</li>
-            <li>Available in all states</li>
-          </ul>
-          <button class="apply-btn" onclick="alert('Apply through state agriculture portal')">Apply Now</button>
-        </div>
-
-        <div class="subsidy-card">
-          <span class="subsidy-icon">💧</span>
-          <h3>Micro-Irrigation (Gujarat: 70-90%)</h3>
-          <div class="subsidy-amount">₹45,000-₹80,000</div>
-          <p>High subsidy for drip/sprinkler irrigation in Gujarat</p>
-          <ul>
-            <li>70% for general farmers (≥2 ha)</li>
-            <li>80% in dark-zone talukas</li>
-            <li>90% for SC/ST in dark zones</li>
-            <li>Apply via GGRC portal</li>
-          </ul>
-          <button class="apply-btn" onclick="alert('Gujarat farmers: Visit ggrc.co.in')">Apply (Gujarat)</button>
-        </div>
-
-        <div class="subsidy-card">
-          <span class="subsidy-icon">📱</span>
-          <h3>Smartphone Subsidy (Gujarat)</h3>
-          <div class="subsidy-amount">₹6,000</div>
-          <p>40% subsidy on smartphones for Gujarat farmers</p>
-          <ul>
-            <li>Max ₹6,000 or 40% cost</li>
-            <li>Access weather alerts</li>
-            <li>Crop disease info</li>
-            <li>Online scheme applications</li>
-          </ul>
-          <button class="apply-btn" onclick="alert('Gujarat specific - Check eligibility')">Apply (Gujarat)</button>
-        </div>
-
-        <div class="subsidy-card">
-          <span class="subsidy-icon">🛡️</span>
-          <h3>Crop Insurance (PMFBY)</h3>
-          <div class="subsidy-amount">₹50,000</div>
-          <p>Premium subsidy for crop loss protection</p>
-          <ul>
-            <li>2% premium for Kharif</li>
-            <li>1.5% for Rabi crops</li>
-            <li>Natural disaster coverage</li>
-            <li>Govt pays balance premium</li>
-          </ul>
-          <button class="apply-btn" onclick="alert('Enroll during sowing season')">Enroll Now</button>
-        </div>
-
-        <div class="subsidy-card">
-          <span class="subsidy-icon">🚜</span>
-          <h3>Farm Mechanization</h3>
-          <div class="subsidy-amount">40-50%</div>
-          <p>Subsidy on tractors, harvesters, and farm equipment</p>
-          <ul>
-            <li>SMAM scheme</li>
-            <li>Custom hiring centers</li>
-            <li>Drone subsidy for FPOs</li>
-            <li>State-specific rates</li>
-          </ul>
-          <button class="apply-btn" onclick="alert('Check state agriculture portal')">View Details</button>
-        </div>
-      </div>
-
-      <div class="eligibility-checker">
-        <h3>🔍 Check Your Eligibility</h3>
-        <form id="eligibility-form" onsubmit="checkEligibility(event)">
-          <div class="form-group">
-            <label>State</label>
-            <select id="state" required>
-              <option value="">Select State</option>
-              <option value="punjab">Punjab</option>
-              <option value="haryana">Haryana</option>
-              <option value="up">Uttar Pradesh</option>
-              <option value="maharashtra">Maharashtra</option>
-              <option value="karnataka">Karnataka</option>
-              <option value="gujarat">Gujarat</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label>Land Holding (in hectares)</label>
-            <input type="number" id="land" placeholder="Enter land size" step="0.01" required>
-          </div>
-          <div class="form-group">
-            <label>Aadhaar Number</label>
-            <input type="text" id="aadhaar" placeholder="XXXX-XXXX-XXXX" maxlength="14" required>
-          </div>
-          <div class="form-group">
-            <label>Farmer Category</label>
-            <select id="category" required>
-              <option value="">Select Category</option>
-              <option value="small">Small (< 2 hectares)</option>
-              <option value="marginal">Marginal (< 1 hectare)</option>
-              <option value="large">Large (> 2 hectares)</option>
-              <option value="scst">SC/ST Category</option>
-            </select>
-          </div>
-          <button type="submit" class="check-btn">Check Eligibility</button>
-        </form>
-
-        <div id="result" class="result-box">
-          <h4>✅ You are eligible for:</h4>
-          <ul id="eligible-schemes"></ul>
-          <p style="color: #FFD700; margin-top: 20px; font-weight: 600;">Total Potential Subsidy: <span id="total-subsidy" style="font-size: 28px; font-weight: 900;"></span></p>
-        </div>
-      </div>
+      <h2 class="section-title">🏛️ Government Subsidies</h2>
+      <p style="text-align: center; color: #888; margin: 20px 0;">Check "Govt Subsidies" in main navigation for complete details</p>
     </div>
 
     <!-- ANALYTICS TAB -->
     <div id="analytics-tab" class="tab-content">
       <h2 class="section-title">📊 AI-Powered Analytics</h2>
-      
       <div class="chart-section">
         <h3>Wheat Price Trend - Last 6 Months</h3>
         <img src="https://agents-storage.nyc3.digitaloceanspaces.com/quickchart/34e80754-5200-4852-8044-a956739965c0.png" alt="Wheat Price Trend">
       </div>
-
-      <div class="chart-section">
-        <h3>Live Market Comparison</h3>
-        <img src="https://agents-storage.nyc3.digitaloceanspaces.com/quickchart/05750bae-44f1-47c4-959e-de483d3529e0.png" alt="Market Prices">
-      </div>
-    </div>
-
-    <!-- TRADERS TAB -->
-    <div id="traders-tab" class="tab-content">
-      <h2 class="section-title">🤝 Connect with Verified Traders</h2>
-      <p style="text-align: center; color: #888; margin: 20px 0;">Coming Soon - Direct trader marketplace</p>
     </div>
   </main>
-
-  <!-- AI Assistant Button -->
-  <div class="ai-assistant-btn" onclick="toggleChatbot()">🤖</div>
-
-  <!-- Chatbot Window -->
-  <div class="chatbot-window" id="chatbot">
-    <div class="chatbot-header">
-      <h3>🤖 RTCP AI Assistant</h3>
-      <button class="close-chat" onclick="toggleChatbot()">×</button>
-    </div>
-    <div class="chatbot-messages" id="chat-messages">
-      <div class="message bot">
-        <p id="welcome-msg">👋 Namaste! I'm your AI farming assistant. Ask me about:</p>
-        <div class="quick-actions">
-          <button class="quick-btn" onclick="askBot('crop prices')">💰 Crop Prices</button>
-          <button class="quick-btn" onclick="askBot('subsidies')">🏛️ Subsidies</button>
-          <button class="quick-btn" onclick="askBot('weather')">🌤️ Weather</button>
-          <button class="quick-btn" onclick="askBot('pm kisan')">💳 PM-KISAN</button>
-        </div>
-      </div>
-    </div>
-    <div class="chatbot-input">
-      <input type="text" id="chat-input" placeholder="Type your question..." onkeypress="if(event.key==='Enter') sendMessage()">
-      <button class="send-btn" onclick="sendMessage()">➤</button>
-    </div>
-  </div>
 
   <nav class="bottom-nav">
     <button class="nav-btn active">
@@ -933,70 +1021,70 @@
   </nav>
 
   <script>
-    console.log('🌾 RTCP v4.0 - Complete Platform with AI Assistant!');
-    console.log('💰 Prices • 🏛️ Subsidies • 📊 Analytics • 🤖 AI Assistant • 🌐 6 Languages');
+    console.log('🌾 RTCP v5.0 - Complete Platform with Authentication!');
     
-    // Language translations
-    const translations = {
-      en: {
-        appTitle: 'RTCP',
-        appSubtitle: 'COMPLETE FARMER PLATFORM',
-        heroTitle: "🚀 India's #1 Farmer Platform",
-        heroSubtitle: 'Real-Time Prices • AI Predictions • Government Subsidies • Direct Trading',
-        welcomeMsg: "👋 Namaste! I'm your AI farming assistant. Ask me about:"
-      },
-      hi: {
-        appTitle: 'आरटीसीपी',
-        appSubtitle: 'संपूर्ण किसान मंच',
-        heroTitle: '🚀 भारत का #1 किसान मंच',
-        heroSubtitle: 'रीयल-टाइम मूल्य • एआई भविष्यवाणी • सरकारी सब्सिडी • सीधा व्यापार',
-        welcomeMsg: "👋 नमस्ते! मैं आपका एआई खेती सहायक हूं। मुझसे पूछें:"
-      },
-      gu: {
-        appTitle: 'આરટીસીપી',
-        appSubtitle: 'સંપૂર્ણ ખેડૂત પ્લેટફોર્મ',
-        heroTitle: '🚀 ભારતનું #1 ખેડૂત પ્લેટફોર્મ',
-        heroSubtitle: 'રીઅલ-ટાઇમ ભાવ • એઆઇ આગાહી • સરકારી સબસિડી • સીધો વેપાર',
-        welcomeMsg: "👋 નમસ્તે! હું તમારો એઆઇ ખેતી સહાયક છું. મને પૂછો:"
-      },
-      pa: {
-        appTitle: 'ਆਰਟੀਸੀਪੀ',
-        appSubtitle: 'ਸੰਪੂਰਨ ਕਿਸਾਨ ਪਲੇਟਫਾਰਮ',
-        heroTitle: '🚀 ਭਾਰਤ ਦਾ #1 ਕਿਸਾਨ ਪਲੇਟਫਾਰਮ',
-        heroSubtitle: 'ਰੀਅਲ-ਟਾਈਮ ਕੀਮਤਾਂ • ਏਆਈ ਭਵਿੱਖਬਾਣੀ • ਸਰਕਾਰੀ ਸਬਸਿਡੀ • ਸਿੱਧਾ ਵਪਾਰ',
-        welcomeMsg: "👋 ਸਤ ਸ੍ਰੀ ਅਕਾਲ! ਮੈਂ ਤੁਹਾਡਾ ਏਆਈ ਖੇਤੀ ਸਹਾਇਕ ਹਾਂ। ਮੈਨੂੰ ਪੁੱਛੋ:"
-      },
-      mr: {
-        appTitle: 'आरटीसीपी',
-        appSubtitle: 'संपूर्ण शेतकरी व्यासपीठ',
-        heroTitle: '🚀 भारताचे #1 शेतकरी व्यासपीठ',
-        heroSubtitle: 'रिअल-टाइम किंमती • एआय अंदाज • सरकारी अनुदान • थेट व्यापार',
-        welcomeMsg: "👋 नमस्कार! मी तुमचा एआय शेती सहाय्यक आहे. मला विचारा:"
-      },
-      ta: {
-        appTitle: 'ஆர்டிசிபி',
-        appSubtitle: 'முழுமையான விவசாயி தளம்',
-        heroTitle: '🚀 இந்தியாவின் #1 விவசாயி தளம்',
-        heroSubtitle: 'நேரடி விலைகள் • AI கணிப்பு • அரசு மானியம் • நேரடி வர்த்தகம்',
-        welcomeMsg: "👋 வணக்கம்! நான் உங்கள் AI விவசாய உதவியாளர். என்னிடம் கேளுங்கள்:"
-      }
-    };
-    
-    function changeLanguage() {
-      const lang = document.getElementById('language').value;
-      const t = translations[lang];
-      
-      document.getElementById('app-title').textContent = t.appTitle;
-      document.getElementById('app-subtitle').textContent = t.appSubtitle;
-      document.getElementById('hero-title').textContent = t.heroTitle;
-      document.getElementById('hero-subtitle').textContent = t.heroSubtitle;
-      document.getElementById('welcome-msg').textContent = t.welcomeMsg;
-      
-      // Show language change notification
-      addBotMessage(`✅ Language changed to ${document.getElementById('language').options[document.getElementById('language').selectedIndex].text}`);
+    // Check if user is logged in
+    let currentUser = localStorage.getItem('rtcpUser');
+    if (!currentUser) {
+      document.getElementById('authOverlay').classList.remove('hidden');
+    } else {
+      const user = JSON.parse(currentUser);
+      document.getElementById('userName').textContent = user.name;
+      document.getElementById('heroName').textContent = user.name.split(' ')[0];
+      document.getElementById('userAvatar').textContent = user.name.charAt(0);
     }
     
-    // Tab switching
+    function switchAuthTab(tab) {
+      document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.auth-form').forEach(f => f.classList.remove('active'));
+      
+      if (tab === 'login') {
+        document.querySelectorAll('.auth-tab')[0].classList.add('active');
+        document.getElementById('loginForm').classList.add('active');
+      } else {
+        document.querySelectorAll('.auth-tab')[1].classList.add('active');
+        document.getElementById('signupForm').classList.add('active');
+      }
+    }
+    
+    function handleLogin(event) {
+      event.preventDefault();
+      const user = {
+        name: 'Raj Kapasi',
+        mobile: '9876543210',
+        email: 'raj@example.com'
+      };
+      localStorage.setItem('rtcpUser', JSON.stringify(user));
+      document.getElementById('authOverlay').classList.add('hidden');
+      document.getElementById('userName').textContent = user.name;
+      document.getElementById('heroName').textContent = user.name.split(' ')[0];
+      document.getElementById('userAvatar').textContent = user.name.charAt(0);
+      alert('✅ Login successful! Welcome to RTCP');
+    }
+    
+    function handleSignup(event) {
+      event.preventDefault();
+      const name = document.getElementById('signupName').value;
+      const user = {
+        name: name,
+        mobile: '9876543210',
+        email: 'user@example.com'
+      };
+      localStorage.setItem('rtcpUser', JSON.stringify(user));
+      document.getElementById('authOverlay').classList.add('hidden');
+      document.getElementById('userName').textContent = user.name;
+      document.getElementById('heroName').textContent = user.name.split(' ')[0];
+      document.getElementById('userAvatar').textContent = user.name.charAt(0);
+      alert('✅ Account created successfully! Welcome to RTCP');
+    }
+    
+    function handleLogout() {
+      if (confirm('Are you sure you want to logout?')) {
+        localStorage.removeItem('rtcpUser');
+        location.reload();
+      }
+    }
+    
     function showTab(tabName) {
       document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
       document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
@@ -1005,154 +1093,6 @@
       event.target.classList.add('active');
     }
     
-    // Real-time price updates
-    setInterval(() => {
-      document.querySelectorAll('.crop-price').forEach(el => {
-        const current = parseInt(el.textContent.replace(/[₹,]/g, ''));
-        const change = Math.floor(Math.random() * 20) - 10;
-        const newPrice = Math.max(1, current + change);
-        el.textContent = '₹' + newPrice.toLocaleString('en-IN');
-      });
-    }, 5000);
-    
-    // Eligibility checker
-    function checkEligibility(event) {
-      event.preventDefault();
-      
-      const state = document.getElementById('state').value;
-      const land = parseFloat(document.getElementById('land').value);
-      const category = document.getElementById('category').value;
-      
-      const schemes = [];
-      let totalSubsidy = 0;
-      
-      // PM-KISAN (all eligible)
-      schemes.push('PM-KISAN: ₹6,000/year');
-      totalSubsidy += 6000;
-      
-      // Gujarat specific schemes
-      if (state === 'gujarat') {
-        schemes.push('Smartphone Subsidy (Gujarat): ₹6,000');
-        totalSubsidy += 6000;
-        
-        if (category === 'scst') {
-          schemes.push('Micro-Irrigation (Gujarat SC/ST): ₹80,000-₹90,000 (85-90% subsidy)');
-          totalSubsidy += 85000;
-        } else if (land >= 2) {
-          schemes.push('Micro-Irrigation (Gujarat): ₹60,000-₹70,000 (70% subsidy)');
-          totalSubsidy += 65000;
-        } else {
-          schemes.push('Micro-Irrigation (Gujarat): ₹70,000-₹80,000 (70-80% subsidy)');
-          totalSubsidy += 75000;
-        }
-      }
-      
-      // Small/Marginal farmer benefits
-      if (category === 'small' || category === 'marginal') {
-        if (state !== 'gujarat') {
-          schemes.push('Micro-Irrigation: ₹45,000 (55% subsidy)');
-          totalSubsidy += 45000;
-        }
-        schemes.push('PM-KUSUM Solar Pump: ₹60,000 (60% subsidy)');
-        totalSubsidy += 60000;
-      }
-      
-      // State-specific
-      if (state === 'up') {
-        schemes.push('Solar Fencing (UP): ₹1,63,000 (60% subsidy)');
-        totalSubsidy += 163000;
-      }
-      
-      // Crop insurance
-      schemes.push('PMFBY Crop Insurance: ₹50,000 coverage');
-      totalSubsidy += 50000;
-      
-      // Farm mechanization
-      if (land > 1) {
-        schemes.push('Farm Mechanization: 40-50% on equipment');
-        totalSubsidy += 75000;
-      }
-      
-      // Display results
-      const resultBox = document.getElementById('result');
-      const schemesList = document.getElementById('eligible-schemes');
-      const totalElement = document.getElementById('total-subsidy');
-      
-      schemesList.innerHTML = schemes.map(s => `<li style="color: #ccc; padding: 10px 0; border-bottom: 1px solid rgba(255,215,0,0.2);">${s}</li>`).join('');
-      totalElement.textContent = '₹' + totalSubsidy.toLocaleString('en-IN');
-      
-      resultBox.classList.add('show');
-    }
-    
-    // Chatbot functions
-    function toggleChatbot() {
-      const chatbot = document.getElementById('chatbot');
-      chatbot.classList.toggle('show');
-    }
-    
-    function sendMessage() {
-      const input = document.getElementById('chat-input');
-      const message = input.value.trim();
-      
-      if (message) {
-        addUserMessage(message);
-        input.value = '';
-        
-        // Simulate AI response
-        setTimeout(() => {
-          const response = getAIResponse(message);
-          addBotMessage(response);
-        }, 1000);
-      }
-    }
-    
-    function askBot(topic) {
-      addUserMessage(topic);
-      setTimeout(() => {
-        const response = getAIResponse(topic);
-        addBotMessage(response);
-      }, 1000);
-    }
-    
-    function addUserMessage(text) {
-      const messagesDiv = document.getElementById('chat-messages');
-      const messageDiv = document.createElement('div');
-      messageDiv.className = 'message user';
-      messageDiv.innerHTML = `<p>${text}</p>`;
-      messagesDiv.appendChild(messageDiv);
-      messagesDiv.scrollTop = messagesDiv.scrollHeight;
-    }
-    
-    function addBotMessage(text) {
-      const messagesDiv = document.getElementById('chat-messages');
-      const messageDiv = document.createElement('div');
-      messageDiv.className = 'message bot';
-      messageDiv.innerHTML = `<p>${text}</p>`;
-      messagesDiv.appendChild(messageDiv);
-      messagesDiv.scrollTop = messagesDiv.scrollHeight;
-    }
-    
-    function getAIResponse(message) {
-      const msg = message.toLowerCase();
-      
-      if (msg.includes('price') || msg.includes('crop')) {
-        return '💰 Current prices: Wheat ₹2,150/quintal (+5.2%), Rice ₹3,200/quintal (+3.8%), Cotton ₹6,800/quintal (-2.1%). Check the "Live Prices" tab for more!';
-      } else if (msg.includes('subsidy') || msg.includes('scheme')) {
-        return '🏛️ Major subsidies available: PM-KISAN (₹6,000/year), Solar Pump (₹60,000), Micro-Irrigation (₹45,000-₹90,000), Crop Insurance. Check "Govt Subsidies" tab for details!';
-      } else if (msg.includes('weather')) {
-        return '🌤️ Current weather in Ludhiana: 6°C, Some clouds, 70% humidity. Good conditions for wheat harvesting. Wind: 8.1 km/h.';
-      } else if (msg.includes('pm kisan') || msg.includes('pm-kisan')) {
-        return '💳 PM-KISAN provides ₹6,000/year in 3 installments of ₹2,000 each. Check your status at pmkisan.gov.in with your Aadhaar number. 9.7 crore farmers already benefited!';
-      } else if (msg.includes('gujarat')) {
-        return '🇮🇳 Gujarat farmers get special benefits: Smartphone subsidy (₹6,000), High micro-irrigation subsidy (70-90%), Seed replacement subsidy (10%). Check eligibility in Subsidies tab!';
-      } else if (msg.includes('help') || msg.includes('support')) {
-        return '📞 Need help? Call our toll-free helpline: 1800-XXX-XXXX or visit your nearest agriculture office. We support 6 languages!';
-      } else {
-        return '🤖 I can help you with: Crop prices, Government subsidies, Weather updates, PM-KISAN status, Gujarat schemes, and more. What would you like to know?';
-      }
-    }
-    
-    // Navigation
     document.querySelectorAll('.nav-btn').forEach(btn => {
       btn.addEventListener('click', function() {
         document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
